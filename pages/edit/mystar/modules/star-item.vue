@@ -64,19 +64,19 @@
         height: 26px;
     }
 
-    .starList-r-icon {
+    .x-r-icon {
         width: 16px;
         height: 26px;
     }
 
-    .starList-title {
+    .x-title-box {
         box-sizing: border-box;
         padding-left: 20px;
         max-width: 100%;
         padding-right: 40px;
     }
 
-    .starList-title .title {
+    .x-title-box .title {
         font-size: 34px;
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -85,7 +85,7 @@
         color: #4a4a4a;
     }
 
-    .starList-title .title-tips {
+    .x-title-box .title-tips {
         font-size: 24px;
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -99,13 +99,13 @@
         <div class="starList star-flex">
             <div class="starList-l " :class="'mystar_'+propData.name"></div>
             <div class="starList-c">
-                <div class="starList-title">
+                <div class="x-title-box">
                     <h3 class="title">{{propData.title}}</h3>
                     <p class="title-tips">{{propData.titleTips}}</p>
                 </div>
             </div>
             <div class="starList-r">
-                <div class="starList-r-icon icon-back"></div>
+                <div class="x-r-icon x-icon-back"></div>
             </div>
         </div>
     </div>

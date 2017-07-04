@@ -1,10 +1,21 @@
 <template>
   <button class="vux-swipeout-button"
-  :class="{'vux-swipeout-button-primary': type === 'primary', 'vux-swipeout-button-warn': type === 'warn', 'vux-swipeout-button-default': type === 'default'}" :style="{width: `${width}px`, backgroundColor: backgroundColor}" @click="onButtonClick" type="button">
+  :class="{'x-primary': type === 'primary', 'x-delete': type === 'delete', 'x-default': type === 'default'}" :style="{width: `${width}px`, backgroundColor: backgroundColor}" @click="onButtonClick" type="button">
     <slot>{{text}}</slot>
   </button>
 </template>
+<style scoped="">
+  .x-default{
+    background: #c7c7cd;
+  }
+  .x-delete{
+    background:#fe3824;
+  }
+  .x-primary{
+    background:#f6a623;
+  }
 
+</style>
 <script>
 export default {
   props: {
@@ -13,13 +24,13 @@ export default {
     type: String,
     width: {
       type: Number,
-      default: 80
+      default: 148
     }
   },
   methods: {
     onButtonClick () {
       if (this.$parent.$options._componentTag === 'swipeout-item') {
-        this.$parent.onItemClick(this.text)
+        this.$parent.onItemClick(this.type||'default',this.text)
       }
     }
   }

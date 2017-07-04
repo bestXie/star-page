@@ -13,7 +13,7 @@
 
         <swipeout>
             <swipeout-item @on-close="handleEvents('on-close'+i)" @on-open="handleEvents('on-open'+i)"
-                           transition-mode="follow" v-for="i in 3" :key="i">
+                           transition-mode="follow" v-for="i in 3" :key="i" propData="1">
                 <div slot="right-menu">
                     <swipeout-button @click.native="onButtonClick(i+'-1')" type="primary">Yes</swipeout-button>
                     <swipeout-button @click.native="onButtonClick(i+'-2')" type="warn">Right</swipeout-button>

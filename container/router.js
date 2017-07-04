@@ -9,13 +9,13 @@ const myStar = r => require.ensure([], () => r(require('../pages/edit/myStar/ind
 
 const eitTemplet = r => require.ensure([], () => r(require('../pages/edit/eitTemplet/index')), 'pages_eitTemplet');
 const eitTemplet_myTemplet = r => require.ensure([], () => r(require('../pages/edit/eitTemplet/children/myTemplet.vue')), 'pages_eitTemplet_myTemplet');
+const eitTemplet_myCollection = r => require.ensure([], () => r(require('../pages/edit/eitTemplet/children/myCollection.vue')), 'pages_eitTemplet_myCollection');
 
 
 const modify = r => require.ensure([], () => r(require('../pages/edit/modify/index')), 'pages_modify');
 const dome = r => require.ensure([], () => r(require('../pages/edit/dome/index')), 'pages_dome');
 const sortable = r => require.ensure([], () => r(require('../pages/edit/sortable/index')), 'pages_sortable');
 const banner = r => require.ensure([], () => r(require('../pages/edit/banner/index')), 'pages_banner');
-
 
 
 const restore = r => require.ensure([], () => r(require('../pages/edit/restore/index')), 'pages_restore');
@@ -81,11 +81,17 @@ const routes = [
                 path: '/eitTemplet',
                 name: 'eitTemplet',
                 component: eitTemplet,
-                children: [{
-                    path: '/eitTemplet_myTemplet',
-                    name: 'eitTemplet_myTemplet',
-                    component: eitTemplet_myTemplet
-                }]
+                children: [
+                    {
+                        path: '/eitTemplet_myTemplet',
+                        name: 'eitTemplet_myTemplet',
+                        component: eitTemplet_myTemplet
+                    },
+                    {
+                        path: '/eitTemplet_myCollection',
+                        name: 'eitTemplet_myCollection',
+                        component: eitTemplet_myCollection
+                    }]
             }
         ]
     },
