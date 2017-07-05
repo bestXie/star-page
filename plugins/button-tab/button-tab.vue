@@ -1,6 +1,6 @@
 <template>
     <div class="x-button-group">
-        <div class="x-button-item" @click="starClick">
+        <div class="x-button-item" :class="{'x-disabled': type === 'disabled', 'x-delete': type === 'delete', 'x-default': type === 'default', 'x-submit': type === 'submit'}"  @click="starClick">
             <p class="x-button-text">
                 <slot></slot>
             </p>
@@ -14,10 +14,10 @@
         name: 'x-button-tab',
         props: {
             propData: {default: {}},
+            type: String
         },
         methods: {
             starClick(){
-                console.log(1)
                 this.$emit('starClick')
             }
         }
@@ -43,6 +43,20 @@
         justify-content: center;
         align-items: center;
         border-radius: 8px;
+    }
+
+    .x-button-item.x-disabled{
+        background: #dfdfdf;
+    }
+
+    .x-button-item.x-disabled .x-button-text{
+        color: #fff;
+    }
+    .x-button-item.x-submit{
+        background: #0076ff;
+    }
+    .x-button-item.x-submit .x-button-text{
+        color: #fff;
     }
 
     .x-button-text {

@@ -1,116 +1,88 @@
-<style lang="less" scoped>
-    @import './index.less';
-    .vux-1px-t {
-        position: relative;
-    }
-
-    .vux-1px-t:before {
-        content: " ";
-        position: absolute;
-        left: 0;
-        right: 0;
-        height: 1px;
-        color: #c7c7c7;
-    }
-
-    .vux-1px-t:before {
-        top: 0;
-        border-top: 1px solid #c7c7c7;
-        -webkit-transform-origin: 0 0;
-        transform-origin: 0 0;
-        -webkit-transform: scaleY(.5);
-        transform: scaleY(.5);
-    }
-
-    .vux-swipeout {
-        width: 100%;
-        overflow: hidden;
-    }
-
-    .vux-swipeout-item {
-        position: relative;
-    }
-
-    .vux-swipeout-button-box {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        font-size: 0;
-        text-align: right;
-    }
-
-    .vux-swipeout-button-box-left {
-        text-align: left;
-    }
-
-    .vux-swipeout-content {
-        position: relative;
-        background: #FFF;
-    }
-
-    .demo-content {
-        padding: 10px 10px;
-    }
-
-    .vux-swipeout-button-box > div {
-        height: 100%;
-    }
-
-    .vux-swipeout-button {
-        height: 100%;
-        text-align: center;
-        font-size: 14px;
-        color: #FFF;
-        border: none;
-    }
-</style>
-
 <template>
     <div class="wrapper">
-        <p class="title">Hello icepy</p>
-        <p class="subtitle" v-on:click="getClick">{{ link }}</p>
-        <p class="subtitle" v-on:click="getClick2">{{ login }}</p>
-        <p class="subtitle" v-on:click="getClick3">{{ register }}</p>
+        <confirm :confirm="confirm"></confirm>
+        <toast :propData="toast"></toast>
+        <router-view style="flex:1;"></router-view>
     </div>
 </template>
-
 <script>
-    import axios from 'axios'
-    import {getCasCheck} from '../../api/index.js'
-    export default {
-        name: 'home',
-        data () {
-            return {
-                link: 'DingTalk',
-                login: 'login',
-                register: 'register'
-            }
-        },
+    import confirm from '../../../plugins/confirm/index.vue';
+    import toast from '../../../plugins/toast/index.vue'
 
-        mounted () {
-            axios.get('http://ouat.fosun.com/new_portal/api/cas/check?email=ceshi@.ddd.com').then((res) => {
-                console.log(res);
-                console.log(111)
-            }).catch(function (err) {
-                console.log(err);
-            });
-            getCasCheck({email: 'ceshi@.ddd2.com'}).then(res => {
-                console.log(res)
-            });
+    import {mapGetters} from 'vuex';
+    export default {
+        name: 'edit',
+        components: {
+            confirm,
+            toast
         },
-        methods: {
-            getClick () {
-                this.$router.push('dingtalk');
-            },
-            getClick2 () {
-                this.$router.push('login');
-            },
-            getClick3 () {
-                this.$router.push('register');
-            }
+        mounted () {
+        },
+        computed: {
+            ...mapGetters([
+                'confirm',
+                'toast'
+            ])
         }
     }
 </script>
 
+<style lang="less">
+    .wrapper {
+        width: 100%;
+        height: 100%;
+    }
+    .edit-container {
+        width: 100%;
+        height: 100%;
+    }
+
+    .x-tips-color {
+        color: #0076ff;
+    }
+    .x-border-1px-bottom {
+        border-bottom: 1px #c8c8c8 solid;
+    }
+    .x-border-1px{
+        border: solid 1px #ccc;
+    }
+
+    .x-h-common{
+        width: 100%;
+        height: 30px;
+    }
+
+
+    .x-title-box {
+        box-sizing: border-box;
+        padding-left: 20px;
+        max-width: 100%;
+        padding-right: 40px;
+    }
+    .x-title-box .title {
+        font-size: 34px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        margin-bottom: 30px;
+        color: #4a4a4a;
+        line-height: 1;
+    }
+    .x-title-box .title-tips {
+        font-size: 24px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        color: #9b9b9b;
+    }
+    .x-r-icon {
+        width: 16px;
+        height: 26px;
+    }
+    .x-icon-star{
+        width: 40px;
+        height: 40px;
+        margin-right: 32px;
+        background: #ccc;
+    }
+</style>

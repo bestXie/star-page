@@ -1,6 +1,4 @@
-/**
-* Created by bestXie on 2017/6/16.
-*/
+
 <template>
     <transition name="modal" v-if="confirm.show">
         <vMask :show="confirm.show" :stylebg="'rgba(0,0,0,0.2)'">

@@ -75,8 +75,10 @@
             },
             onItemClick (type, text) {
                 let _this = this;
-                this.$emit('starClick', this.propData, type, function () {
-                    _this._setClose()
+                this.$emit('starClick', {
+                    data: this.propData, type: type, callback: function () {
+                        _this._setClose()
+                    }
                 });
                 if (this.autoCloseOnButtonClick) {
                     this._setClose()

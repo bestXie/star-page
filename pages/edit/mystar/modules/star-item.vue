@@ -3,7 +3,6 @@
         width: 100%;
         height: 2.4rem;
         padding: 20px 30px;
-        border-bottom: 1px #c8c8c8 solid;
         overflow: hidden;
         display: -webkit-flex; /* Safari */
         display: flex;
@@ -52,10 +51,9 @@
 
     .starList-c {
         flex: 1;
-        width: calc(100% - 250px);
         align-items: center;
         display: flex;
-
+        overflow: hidden;
         box-sizing: border-box;
     }
 
@@ -64,38 +62,11 @@
         height: 26px;
     }
 
-    .x-r-icon {
-        width: 16px;
-        height: 26px;
-    }
 
-    .x-title-box {
-        box-sizing: border-box;
-        padding-left: 20px;
-        max-width: 100%;
-        padding-right: 40px;
-    }
-
-    .x-title-box .title {
-        font-size: 34px;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        margin-bottom: 30px;
-        color: #4a4a4a;
-    }
-
-    .x-title-box .title-tips {
-        font-size: 24px;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        color: #9b9b9b;
-    }
 </style>
 
 <template>
-    <div class="starList-item" @click="starClick(propData.name)">
+    <div class="starList-item x-border-1px-bottom" @click="starClick(propData.name)">
         <div class="starList star-flex">
             <div class="starList-l " :class="'mystar_'+propData.name"></div>
             <div class="starList-c">
