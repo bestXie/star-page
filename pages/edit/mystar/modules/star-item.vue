@@ -23,7 +23,7 @@
         border-radius: 10px;
     }
 
-    .mystar_eitTemplet_myTemplet {
+    .mystar_editMyTpl_myTemplet {
         background: url("../../../../images/mystar/mystar_my_template.png") center no-repeat;
         -webkit-background-size: 100%;
         background-size: 100%;
@@ -36,7 +36,7 @@
         border: 1px #ccc solid;
     }
 
-    .mystar_my_market {
+    .mystar_editApp_myCmpanyApp {
         background: url("../../../../images/mystar/mystar_my_market.png") center no-repeat;
         -webkit-background-size: 100%;
         background-size: 100%;
@@ -62,7 +62,9 @@
         height: 26px;
     }
 
-
+    .x-title-box .title{
+        margin-bottom: 30px;
+    }
 </style>
 
 <template>

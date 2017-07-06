@@ -18,21 +18,23 @@ const common_routerWarpper = r => require.ensure([], () => r(require('../pages/e
 const myStar = r => require.ensure([], () => r(require('../pages/edit/myStar/index')), 'pages_myStar');
 
 //我的模板-首页-模板和最近
-const editMyTemplet_myTemplet = r => require.ensure([], () => r(require('../pages/edit/editMyTemplet/myTemplet.vue')), 'pages_editMyTemplet_myTemplet');
+const editMyTpl_myTemplet = r => require.ensure([], () => r(require('../pages/edit/editMyTpl/myTemplet.vue')), 'pages_editMyTpl_myTemplet');
 //我的模板-我的收藏
-const editMyTemplet_myCollection = r => require.ensure([], () => r(require('../pages/edit/editMyTemplet/myCollection.vue')), 'pages_editMyTemplet_myCollection');
+const editMyTpl_myCollection = r => require.ensure([], () => r(require('../pages/edit/editMyTpl/myCollection.vue')), 'pages_editMyTpl_myCollection');
 //我的模板-历史模板
-const editMyTemplet_myHistory = r => require.ensure([], () => r(require('../pages/edit/editMyTemplet/myHistory.vue')), 'pages_editMyTemplet_myHistory');
+const editMyTpl_myHistory = r => require.ensure([], () => r(require('../pages/edit/editMyTpl/myHistory.vue')), 'pages_editMyTpl_myHistory');
 //我的模板-快照
-const editMyTemplet_mySnapshot = r => require.ensure([], () => r(require('../pages/edit/editMyTemplet/mySnapshot.vue')), 'pages_editMyTemplet_mySnapshot');
+const editMyTpl_mySnapshot = r => require.ensure([], () => r(require('../pages/edit/editMyTpl/mySnapshot.vue')), 'pages_editMyTpl_mySnapshot');
 
 //管理企业应用-我的企业应用
-const editApplication_myCmpanyApp = r => require.ensure([], () => r(require('../pages/edit/editApplication/myCmpanyApp.vue')), 'pages_editApplication_myCmpanyApp');
+const editApp_myCmpanyApp = r => require.ensure([], () => r(require('../pages/edit/editApp/myCmpanyApp.vue')), 'pages_editApp_myCmpanyApp');
 //管理企业应用-添加企业应用
-const editApplication_addCmpanyApp = r => require.ensure([], () => r(require('../pages/edit/editApplication/addCmpanyApp.vue')), 'pages_editApplication_addCmpanyApp');
+const editApp_addCmpanyApp = r => require.ensure([], () => r(require('../pages/edit/editApp/addCmpanyApp.vue')), 'pages_editApp_addCmpanyApp');
 
 //模板编辑-试用和编辑
-const editTemplet_trialoredit = r => require.ensure([], () => r(require('../pages/edit/editTemplet/trialoredit.vue')), 'pages_editTemplet_trialoredit');
+const editTpl_trialoredit = r => require.ensure([], () => r(require('../pages/edit/editTpl/trialoredit.vue')), 'pages_editTpl_trialoredit');
+//模板编辑-试用和编辑
+const editTpl_addModular = r => require.ensure([], () => r(require('../pages/edit/editTpl/addModular.vue')), 'pages_editTpl_addModular');
 
 //
 //还原-还原钉钉默认布局
@@ -102,59 +104,64 @@ const routes = [
                 }]
             },
             {
-                path: '/editMyTemplet',
-                name: 'editMyTemplet',
+                path: '/editMyTpl',
+                name: 'editMyTpl',
                 component: common_routerWarpper,
                 children: [
                     {
-                        path: '/editMyTemplet_myTemplet',
-                        name: 'editMyTemplet_myTemplet',
-                        component: editMyTemplet_myTemplet
+                        path: '/editMyTpl_myTemplet',
+                        name: 'editMyTpl_myTemplet',
+                        component: editMyTpl_myTemplet
                     },
                     {
-                        path: '/editMyTemplet_myCollection',
-                        name: 'editMyTemplet_myCollection',
-                        component: editMyTemplet_myCollection
+                        path: '/editMyTpl_myCollection',
+                        name: 'editMyTpl_myCollection',
+                        component: editMyTpl_myCollection
                     },
                     {
-                        path: '/editMyTemplet_mySnapshot',
-                        name: 'editMyTemplet_mySnapshot',
-                        component: editMyTemplet_mySnapshot
+                        path: '/editMyTpl_mySnapshot',
+                        name: 'editMyTpl_mySnapshot',
+                        component: editMyTpl_mySnapshot
                     },
                     {
-                        path: '/editMyTemplet_myHistory',
-                        name: 'editMyTemplet_myHistory',
-                        component: editMyTemplet_myHistory
+                        path: '/editMyTpl_myHistory',
+                        name: 'editMyTpl_myHistory',
+                        component: editMyTpl_myHistory
                     }]
             },
             {
-                path: '/editApplication',
-                name: 'editApplication',
+                path: '/editApp',
+                name: 'editApp',
                 component: common_routerWarpper,
                 children: [
                     {
-                        path: '/editApplication_myCmpanyApp',
-                        name: 'editApplication_myCmpanyApp',
-                        component: editApplication_myCmpanyApp
+                        path: '/editApp_myCmpanyApp',
+                        name: 'editApp_myCmpanyApp',
+                        component: editApp_myCmpanyApp
                     },
                     {
-                        path: '/editApplication_addCmpanyApp',
-                        name: 'editApplication_addCmpanyApp',
-                        component: editApplication_addCmpanyApp
+                        path: '/editApp_addCmpanyApp',
+                        name: 'editApp_addCmpanyApp',
+                        component: editApp_addCmpanyApp
                     }]
             },
             {
-                path: '/editTemplet',
-                name: 'editTemplet',
+                path: '/editTpl',
+                name: 'editTpl',
                 component: common_routerWarpper,
                 children: [
                     {
-                        path: '/editTemplet_trialoredit',
-                        name: 'editTemplet_trialoredit',
-                        component: editTemplet_trialoredit
+                        path: '/editTpl_trialoredit',
+                        name: 'editTpl_trialoredit',
+                        component: editTpl_trialoredit
+                    },
+                    {
+                        path: '/editTpl_addModular',
+                        name: 'editTpl_addModular',
+                        component: editTpl_addModular
                     }]
             }
-            /**/
+            //
         ]
     },
 

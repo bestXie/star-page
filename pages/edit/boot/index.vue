@@ -64,9 +64,9 @@
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
-        margin-bottom: 30px;
+
         color: #4a4a4a;
-        line-height: 1;
+        font-weight: 300;
     }
     .x-title-box .title-tips {
         font-size: 24px;
@@ -74,6 +74,7 @@
         text-overflow: ellipsis;
         overflow: hidden;
         color: #9b9b9b;
+
     }
     .x-r-icon {
         width: 16px;
@@ -84,5 +85,15 @@
         height: 40px;
         margin-right: 32px;
         background: #ccc;
+    }
+    .x-text-overflow{
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+    .x-flex-center{
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
     }
 </style>

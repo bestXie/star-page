@@ -44,7 +44,7 @@
             setStarList(){
                 this.starList = [
                     {
-                        name: 'eitTemplet_myTemplet',
+                        name: 'editMyTpl_myTemplet',
                         title: '我的模板',
                         titleTips: '丰富的模板,可以编辑的模板'
                     },
@@ -54,7 +54,7 @@
                         titleTips: '添加、删除钉钉应用市场的应用'
                     },
                     {
-                        name: 'my_market',
+                        name: 'editApp_myCmpanyApp',
                         title: '我的企业应用',
                         titleTips: '添加配置你的企业自主研发的应用'
                     },

@@ -98,13 +98,14 @@
                 'banner',
                 'mystar',
                 'restore/restore_dd_default',
-                'editMyTemplet_myTemplet',
-                'editMyTemplet_myCollection',
-                'editMyTemplet_mySnapshot',
-                'editMyTemplet_myHistory',
-                'editApplication_myCmpanyApp',
-                'editApplication_addCmpanyApp',
-                'editTemplet_trialoredit'
+                'editMyTpl_myTemplet',
+                'editMyTpl_myCollection',
+                'editMyTpl_mySnapshot',
+                'editMyTpl_myHistory',
+                'editApp_myCmpanyApp',
+                'editApp_addCmpanyApp',
+                'editTpl_trialoredit',
+                'editTpl_addModular'
             ];
             /*axios.get('http://ouat.fosun.com/new_portal/api/cas/check?email=ceshi@.ddd.com').then((res) => {
              console.log(res);

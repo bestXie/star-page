@@ -4,6 +4,7 @@
         height: 100%;
         display: flex;
         flex-direction: column;
+        background: #fff;
     }
 
     .top-wrapper {
@@ -15,8 +16,7 @@
     }
 
     .top-wrapper img {
-        width: 200px;
-        height: 200px;
+        width:100%;
     }
 
     .bottom-wrapper {
@@ -49,7 +49,7 @@
 
     <div class="wrapper">
         <section class="top-wrapper">
-            <img src="./../../../images/acatar.png" alt="">
+            <img src="./../../../images/restore/icon_RestoreLayout_Dingtalk.png" alt="">
         </section>
         <section class="bottom-wrapper">
             <div class="btn-tips-box">
