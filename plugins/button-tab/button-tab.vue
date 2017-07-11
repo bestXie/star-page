@@ -1,10 +1,10 @@
 <template>
     <div class="x-button-group">
-        <div class="x-button-item" :class="{'x-disabled': type === 'disabled', 'x-delete': type === 'delete', 'x-default': type === 'default', 'x-submit': type === 'submit'}"  @click="starClick">
+        <hover-style class="x-button-item" :class="{'x-disabled': type === 'disabled', 'x-delete': type === 'delete', 'x-default': type === 'default', 'x-submit': type === 'submit'}"  @starClick="starClick">
             <p class="x-button-text">
                 <slot></slot>
             </p>
-        </div>
+        </hover-style>
     </div>
 </template>
 

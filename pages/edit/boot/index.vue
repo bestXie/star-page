@@ -1,8 +1,8 @@
 <template>
-    <div class="wrapper">
+    <div class="wrapper" >
         <confirm :confirm="confirm"></confirm>
         <toast :propData="toast"></toast>
-        <router-view style="flex:1;"></router-view>
+        <router-view style="flex:1;" :class="{'x-filter':confirm.show}"></router-view>
     </div>
 </template>
 <script>
@@ -95,5 +95,15 @@
         -ms-flex-align: center;
         -webkit-align-items: center;
         align-items: center;
+    }
+
+
+    .x-filter {
+        -webkit-filter: blur(3px);
+        -moz-filter: blur(3px);
+        -ms-filter: blur(3px);
+        filter: blur(3px);
+        filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false);
+        /* IE6~IE9 */
     }
 </style>

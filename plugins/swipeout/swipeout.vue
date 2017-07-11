@@ -1,21 +1,21 @@
 <template>
-    <div class="vux-swipeout">
+    <div class="x-swipeout">
         <slot></slot>
     </div>
 </template>
 
 <style lang="less">
 
-    .vux-swipeout {
+    .x-swipeout {
         width: 100%;
         overflow: hidden;
     }
 
-    .vux-swipeout-item {
+    .x-swipeout-item {
         position: relative;
     }
 
-    .vux-swipeout-button-box {
+    .x-swipeout-button-box {
         position: absolute;
         top: 0;
         right: 0;
@@ -25,15 +25,15 @@
         text-align: right;
     }
 
-    .vux-swipeout-button-box-left {
+    .x-swipeout-button-box-left {
         text-align: left;
     }
 
-    .vux-swipeout-button-box > div {
+    .x-swipeout-button-box > div {
         height: 100%;
     }
 
-    .vux-swipeout-button {
+    .x-swipeout-button {
         height: 100%;
         text-align: center;
         font-size: 14px;
@@ -41,24 +41,24 @@
         border: none;
     }
 
-    .vux-swipeout-content {
+    .x-swipeout-content {
         position: relative;
         /*background: #ccc;*/
     }
 
-    .vux-swipeout-content.vux-swipeout-content-animated {
+    .x-swipeout-content.x-swipeout-content-animated {
         transition: transform 0.2s;
     }
 
-    .vux-swipeout-button-primary {
+    .x-swipeout-button-primary {
         /*background-color:#ccc;*/
     }
 
-    .vux-swipeout-button-warn {
+    .x-swipeout-button-warn {
         /*background-color:#ccc;*/
     }
 
-    .vux-swipeout-button-default {
+    .x-swipeout-button-default {
         /*background-color: #ccc;*/
     }
 </style>

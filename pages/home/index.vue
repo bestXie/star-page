@@ -25,7 +25,7 @@
 
 <template>
     <div class="wrapper">
-        <p class="title">Hello</p>
+        <p class="title">Every day is a new beginning</p>
         <p class="subtitle" v-for="item in linkList" :key="item" v-on:click="getClick(item)">{{ item }}</p>
         <!--<star-list :propData="banner" @starClick="starClick"></star-list>-->
         <div v-for="item in visualList" :key="item" class="visualListt-wrapper">
@@ -91,11 +91,6 @@
 
         mounted () {
             this.linkList = [
-                'Home',
-                'Modify',
-                'Dome',
-                'sortable',
-                'banner',
                 'mystar',
                 'restore/restore_dd_default',
                 'editMyTpl_myTemplet',

@@ -1,5 +1,5 @@
 <template>
-  <button class="vux-swipeout-button"
+  <button class="x-swipeout-button"
   :class="{'x-primary': type === 'primary', 'x-delete': type === 'delete', 'x-default': type === 'default'}" :style="{width: `${width}px`, backgroundColor: backgroundColor}" @click="onButtonClick" type="button">
     <slot>{{text}}</slot>
   </button>

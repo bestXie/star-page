@@ -1,4 +1,4 @@
-import ContentEmpty from './content-empty'
+import ContentEmpty from './content-empty.vue'
 
 export {
     ContentEmpty

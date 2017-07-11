@@ -1,5 +1,5 @@
 <template>
-    <div class="vux-swipeout-item"
+    <div class="x-swipeout-item"
          @touchstart="start"
          @mousedown="start"
          @touchmove="move"
@@ -7,14 +7,14 @@
          @touchend="end"
          @mouseup="end"
          @touchcancel="end">
-        <div class="vux-swipeout-button-box vux-swipeout-button-box-left" :style="leftButtonBoxStyle"
+        <div class="x-swipeout-button-box x-swipeout-button-box-left" :style="leftButtonBoxStyle"
              v-show="distX >= 0">
             <slot name="left-menu"></slot>
         </div>
-        <div class="vux-swipeout-button-box" :style="rightButtonBoxStyle" v-show="distX <= 0">
+        <div class="x-swipeout-button-box" :style="rightButtonBoxStyle" v-show="distX <= 0">
             <slot name="right-menu"></slot>
         </div>
-        <div class="vux-swipeout-content" :style="styles" @mousedown="onContentClick" @touchstart="onContentClick"
+        <div class="x-swipeout-content" :style="styles" @mousedown="onContentClick" @touchstart="onContentClick"
              ref="content">
             <slot name="content"></slot>
         </div>
@@ -207,10 +207,10 @@
                     this.distX = this.leftMenuWidth
                 }
                 if (animated && this.target) {
-                    this.target && this.target.classList.add('vux-swipeout-content-animated')
+                    this.target && this.target.classList.add('x-swipeout-content-animated')
                     var cb = (function (self, target) {
                         return function () {
-                            target.classList.remove('vux-swipeout-content-animated')
+                            target.classList.remove('x-swipeout-content-animated')
                             self.isAnimated = false
                             target.removeEventListener('webkitTransitionEnd', cb)
                             target.removeEventListener('transitionend', cb)

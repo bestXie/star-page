@@ -42,13 +42,5 @@
         height: 100%;
     }
 
-    .filter {
-        -webkit-filter: blur(3px);
-        -moz-filter: blur(3px);
-        -ms-filter: blur(3px);
-        filter: blur(3px);
-        filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false);
-        /* IE6~IE9 */
-    }
 
 </style>

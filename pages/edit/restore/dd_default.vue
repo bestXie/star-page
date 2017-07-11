@@ -10,13 +10,13 @@
     .top-wrapper {
         width: 100%;
         display: flex;
-        flex:1;
+        flex: 1;
         justify-content: center;
         align-items: center;
     }
 
     .top-wrapper img {
-        width:100%;
+        width: 100%;
     }
 
     .bottom-wrapper {
@@ -62,7 +62,6 @@
             </div>
         </section>
 
-
     </div>
 </template>
 
@@ -73,13 +72,9 @@
             XButtonTab,
         },
         name: 'dd_default',
-        data () {
-            return {}
-        },
         mounted () {
             this.setPageTitle('还原钉钉默认布局');
         },
-        computed: {},
         methods: {
             setPageTitle(data){
                 dd.ready(function () {
@@ -94,12 +89,9 @@
                             alert(err)
                         }
                     });
-
                     dd.biz.navigation.setRight({
                         show: false,
                     });
-
-
                 });
                 dd.error(function (error) {
                     alert('dd error: ' + JSON.stringify(err));
@@ -107,12 +99,13 @@
             },
             btnEvent(){
                 let _this = this;
+
                 this.$store.commit('confirm', {
                     data: {
                         title: '确认还原钉钉默认首页？',
                     },
                     onConfirm(data, cancel){
-                        if (data.id == 1) {
+                        if (data.id === 1) {
                             console.log(data.id);
                             _this.$store.commit('toast', {content: '已成功还原钉钉工作默认布局'});
                             _this.$router.go(-1);

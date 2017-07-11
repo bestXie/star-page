@@ -1,10 +1,9 @@
-
 <template>
     <transition name="modal" v-if="confirm.show">
         <vMask :show="confirm.show" :stylebg="'rgba(0,0,0,0.2)'">
             <div class="modal-wrapper" @click="onMaskClick">
-                <div class="modal-container" @click.stop="modalContainer">
-                    <div class="modal-header" v-if="confirm.data&&confirm.data.title" >
+                <div class="modal-container"  @click.stop="modalContainer">
+                    <div class="modal-header" v-if="confirm.data&&confirm.data.title">
                         <slot name="header">
                             <div class="modal-default-title">
                                 <h3>{{confirm.data.title}}</h3>
@@ -12,20 +11,22 @@
                         </slot>
                     </div>
 
-                    <div class="modal-body">
+                    <div class="modal-body" :class="confirm.data.boxType">
                         <slot name="body" :confirm="confirm">
-                            <div class="confirm-item" v-for="item in confirm.data.list" :key="item"
-                                 v-on:click="onConfirm(item)" :style="item.style">
+                            <hover-style class="confirm-item" v-for="item in confirm.data.list" :key="item"
+                                         v-on:starClick="onConfirm(item)" :style="item.style">
                                 <p class="confirm-item-text">{{item.text}}</p>
-                            </div>
+                            </hover-style>
                         </slot>
                     </div>
 
                     <div class="modal-footer">
                         <slot name="footer">
-                            <button class="modal-default-button" @click.stop="onCancel">
-                                {{confirm.data.cancel}}
-                            </button>
+                            <hover-style>
+                                <button class="modal-default-button" :class="confirm.data.boxType" @click.stop="onCancel">
+                                    {{confirm.data.cancel}}
+                                </button>
+                            </hover-style>
                         </slot>
                     </div>
                 </div>
@@ -36,7 +37,6 @@
 </template>
 <script>
     import vMask from '../mask/index.vue';
-
     export default {
         components: {
             vMask
@@ -125,16 +125,34 @@
         background: #fff;
         text-align: center;
         width: 100%;
+
+    }
+    .confirm-flex{
+        display: flex;
     }
 
     .confirm-item {
-        display: table;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         font-size: 26px;
         height: 90px;
         color: #fe3824;
         width: 100%;
         background: #fff;
         border-bottom: 1px #c8c8c8 solid;
+    }
+    .confirm-flex .confirm-item,.confirm-black .confirm-item{
+        color: #4a4a4a;
+    }
+    .confirm-flex .confirm-item{
+        border-right: 1px #c8c8c8 solid;
+    }
+    .confirm-flex .confirm-item:last-child {
+        border-right: 0;
+    }
+    .confirm-flex.modal-default-button{
+        margin-top: 0;
     }
 
     .confirm-item:last-child {
@@ -155,7 +173,11 @@
         font-size: 28px;
         color: #4a4a4a;
         text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
+
 
     .modal-enter {
         opacity: 0;

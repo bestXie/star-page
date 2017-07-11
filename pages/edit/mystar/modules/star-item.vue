@@ -4,7 +4,7 @@
         height: 2.4rem;
         padding: 20px 30px;
         overflow: hidden;
-        display: -webkit-flex; /* Safari */
+        display: -webkit-flex;
         display: flex;
         box-sizing: border-box;
     }
@@ -62,7 +62,7 @@
         height: 26px;
     }
 
-    .x-title-box .title{
+    .x-title-box .title {
         margin-bottom: 30px;
     }
 </style>
@@ -91,9 +91,6 @@
             return {}
         },
         props: ['propData'],
-        computed: {},
-        mounted: function () {
-        },
         methods: {
             starClick(data){
                 this.$emit('starClick', data);

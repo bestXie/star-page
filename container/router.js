@@ -18,34 +18,40 @@ const common_routerWarpper = r => require.ensure([], () => r(require('../pages/e
 const myStar = r => require.ensure([], () => r(require('../pages/edit/myStar/index')), 'pages_myStar');
 
 //我的模板-首页-模板和最近
-const editMyTpl_myTemplet = r => require.ensure([], () => r(require('../pages/edit/editMyTpl/myTemplet.vue')), 'pages_editMyTpl_myTemplet');
+const editMyTpl_myTemplet = r => require.ensure([], () => r(require('../pages/edit/myTpl/myTemplet.vue')), 'pages_editMyTpl_myTemplet');
 //我的模板-我的收藏
-const editMyTpl_myCollection = r => require.ensure([], () => r(require('../pages/edit/editMyTpl/myCollection.vue')), 'pages_editMyTpl_myCollection');
+const editMyTpl_myCollection = r => require.ensure([], () => r(require('../pages/edit/myTpl/myCollection.vue')), 'pages_editMyTpl_myCollection');
 //我的模板-历史模板
-const editMyTpl_myHistory = r => require.ensure([], () => r(require('../pages/edit/editMyTpl/myHistory.vue')), 'pages_editMyTpl_myHistory');
+const editMyTpl_myHistory = r => require.ensure([], () => r(require('../pages/edit/myTpl/myHistory.vue')), 'pages_editMyTpl_myHistory');
 //我的模板-快照
-const editMyTpl_mySnapshot = r => require.ensure([], () => r(require('../pages/edit/editMyTpl/mySnapshot.vue')), 'pages_editMyTpl_mySnapshot');
+const editMyTpl_mySnapshot = r => require.ensure([], () => r(require('../pages/edit/myTpl/mySnapshot.vue')), 'pages_editMyTpl_mySnapshot');
 
 //管理企业应用-我的企业应用
-const editApp_myCmpanyApp = r => require.ensure([], () => r(require('../pages/edit/editApp/myCmpanyApp.vue')), 'pages_editApp_myCmpanyApp');
+const editApp_myCmpanyApp = r => require.ensure([], () => r(require('../pages/edit/cmpanyApp/myCmpanyApp.vue')), 'pages_editApp_myCmpanyApp');
 //管理企业应用-添加企业应用
-const editApp_addCmpanyApp = r => require.ensure([], () => r(require('../pages/edit/editApp/addCmpanyApp.vue')), 'pages_editApp_addCmpanyApp');
+const editApp_addCmpanyApp = r => require.ensure([], () => r(require('../pages/edit/cmpanyApp/addCmpanyApp.vue')), 'pages_editApp_addCmpanyApp');
 
 //模板编辑-试用和编辑
-const editTpl_trialoredit = r => require.ensure([], () => r(require('../pages/edit/editTpl/trialoredit.vue')), 'pages_editTpl_trialoredit');
+const editTpl_trialoredit = r => require.ensure([], () => r(require('../pages/edit/tpl/trialoredit.vue')), 'pages_editTpl_trialoredit');
 //模板编辑-试用和编辑
-const editTpl_addModular = r => require.ensure([], () => r(require('../pages/edit/editTpl/addModular.vue')), 'pages_editTpl_addModular');
+const editTpl_addModular = r => require.ensure([], () => r(require('../pages/edit/tpl/addModular.vue')), 'pages_editTpl_addModular');
 
-//
+//模块演示
+const editModule_showHow = r => require.ensure([], () => r(require('../pages/edit/module/show-how/index.vue')), 'pages_editModule_showHow');
+//模块编辑-banner
+const editModule_banner = r => require.ensure([], () => r(require('../pages/edit/module/banner/index.vue')), 'pages_editModule_banner');
+
+
+//showHow
 //还原-还原钉钉默认布局
 const restore_dd_default = r => require.ensure([], () => r(require('../pages/edit/restore/dd_default.vue')), 'pages_restore_dd_default');
 
 /*编辑 end*/
 
-const modify = r => require.ensure([], () => r(require('../pages/edit/modify/index')), 'pages_modify');
-const dome = r => require.ensure([], () => r(require('../pages/edit/dome/index')), 'pages_dome');
-const sortable = r => require.ensure([], () => r(require('../pages/edit/sortable/index')), 'pages_sortable');
-const banner = r => require.ensure([], () => r(require('../pages/edit/banner/index')), 'pages_banner');
+const modify = r => require.ensure([], () => r(require('../pages/dome/modify/index')), 'pages_dome_modify');
+const dome = r => require.ensure([], () => r(require('../pages/dome/dome/index')), 'pages_dome_dome');
+const sortable = r => require.ensure([], () => r(require('../pages/dome/sortable/index')), 'pages_dome_sortable');
+const banner = r => require.ensure([], () => r(require('../pages/dome/banner/index')), 'pages_dome_banner');
 
 //edit
 const routes = [
@@ -160,6 +166,23 @@ const routes = [
                         name: 'editTpl_addModular',
                         component: editTpl_addModular
                     }]
+            },
+            {
+                path: '/editModule',
+                name: 'editModule',
+                component: common_routerWarpper,
+                children: [
+                    {
+                        path: '/editModule_showHow',
+                        name: 'editModule_showHow',
+                        component: editModule_showHow
+                    },
+                    {
+                        path: '/editModule_banner',
+                        name: 'editModule_banner',
+                        component: editModule_banner
+                    }
+                ]
             }
             //
         ]

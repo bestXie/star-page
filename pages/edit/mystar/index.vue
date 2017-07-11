@@ -38,7 +38,6 @@
         methods: {
             starItemEvent(data){
                 console.info(data);
-
                 this.$router.push(data)
             },
             setStarList(){
@@ -72,7 +71,7 @@
                 ];
             },
             setPageTitle(data){
-                var _this = this;
+                let _this = this;
                 dd.ready(function () {
                     dd.ui.webViewBounce.disable();
                     dd.ui.pullToRefresh.disable();
@@ -92,19 +91,13 @@
                         text: '还原布局',
                         textColor: 'red',
                         onSuccess: function (result) {
-                            _this.$router.push('/restore/restore_dd_default');
-                            //如果control为true，则onSuccess将在发生按钮点击事件被回调
-                            /*
-                                     {}
-                                     */
-//                            alert(result)
+                            _this.starItemEvent('starItemEvent');
                         },
                         onFail: function (err) {
                         }
                     });
-
-
                 });
+
                 dd.error(function (error) {
                     alert('dd error: ' + JSON.stringify(err));
                 });

@@ -1,7 +1,7 @@
 <template>
     <transition :name="'vux-slide-from-top'">
-        <div class="weui-toast" v-show="propData.show">
-            <p class="weui-toast-content">{{propData.content || ''}}</p>
+        <div class="weui-toast" v-show="propData.show" :style="propData.wrapperStyle" @click="starClick">
+            <p class="weui-toast-content" :style="propData.contentStyle">{{propData.content || ''}}</p>
         </div>
     </transition>
 </template>
@@ -9,7 +9,6 @@
 <script>
 
     export default {
-
         name: 'toast',
         props: {
             propData: {
@@ -28,10 +27,15 @@
             }
         },
         computed: {},
+        methods: {
+            starClick(){
+                this.$emit('starClick')
+            }
+        },
         watch: {
             propData (val) {
                 let _this = this;
-                if (val.show) {
+                if (val.show && !val.noTiming) {
                     clearTimeout(this.timeout);
                     this.timeout = setTimeout(() => {
                         _this.propData.show = false
@@ -53,10 +57,15 @@
         background: #44db5e;
         text-align: center;
         color: #FFFFFF;
+        display: flex;
+        min-height: 70px;
+        justify-content: center;
+        align-items: center;
     }
 
     .weui-toast-content {
-        padding: 15px 0;
+        padding:0 15px;
+        box-sizing: border-box;
     }
 
     .vux-slide-from-top-enter, .vux-slide-from-top-leave-active {

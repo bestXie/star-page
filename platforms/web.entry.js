@@ -17,6 +17,9 @@ const {router} = Router(Vue);
 
 Components(Vue);
 
+import VueScroller from 'vue-scroller'
+Vue.use(VueScroller)
+
 if ('addEventListener' in document) {
     document.addEventListener('DOMContentLoaded', function () {
         FastClick.attach(document.body);
