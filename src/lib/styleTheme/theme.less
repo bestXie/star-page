@@ -1,0 +1,35 @@
+/**
+ * Created by bestxie on 2017/3/31.
+ */
+
+@charset "utf-8";
+
+@import "theme/theme-color";
+@import "theme/theme-font";
+
+@import "./const/reset";
+
+html {
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  font-size: @fosun-html-size;
+  color: @fosun-text-color;
+  font-family: @fosun-font-family;
+}
+html,body{
+  .width_block();
+  .height_block();
+}
+body {
+  overflow: hidden;
+  background-color: @fosun-background-color;
+  font-size: @fosun-font-size;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-overflow-scrolling: touch;
+}
+.c-bg{
+  background: @content-background-color;
+}
+.c-color{
+  color: @fosun-text-color;
+}

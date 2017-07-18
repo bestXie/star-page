@@ -1,0 +1,28 @@
+.dialogContainer{
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 9999;
+  .coverPanel{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: 0.5;
+  }
+
+  .dialogPanel{
+    min-width: 5rem;
+    min-height: 2rem;
+    background-color: white;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%,-50%);
+  }
+}
