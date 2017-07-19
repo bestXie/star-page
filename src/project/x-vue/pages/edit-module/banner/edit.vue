@@ -33,8 +33,7 @@
                                 <div class="input-label">模块名称</div>
                             </div>
                             <div class="bar-container-item-r">
-                                <input class="input" autocomplete="off" autocapitalize="off" autocorrect="off"
-                                       spellcheck="false"
+                                <input class="input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"
                                        type="text" placeholder="广告图片" maxlength="10">
                             </div>
                         </div>
@@ -46,7 +45,7 @@
                     </div>
                     <div class="edit-item-box">
                         <edit-box :propData="propDataAdd" @starClick="editItemAddCLick"></edit-box>
-                        <edit-box :propData="3" @starClick="editItemCLick"></edit-box>
+                        <edit-box :propData="bannerList" @starClick="editItemCLick"></edit-box>
                     </div>
 
                 </section>
@@ -59,9 +58,11 @@
     import {getStore, setStore} from '../../../util/index';
     import toast from '../../../plugins/toast/index.vue'
     import EditBox from './modules/edit-box.vue'
+    import {sortableMixin} from '../../../mixins/eid_sortableMixin'
     export default {
         name: 'page_banner_index',
         components: {toast, EditBox},
+        mixins: [sortableMixin],
         data () {
             return {
                 moduleList: [],
@@ -74,9 +75,25 @@
                     content: '点击查看快照预览',
                     type: 'snapshot'
                 },
+                bannerList: []
             }
         },
         mounted () {
+            this.bannerList=[
+                {imgSrc:'',type:'',title:'angela1',tips:'375*90px'},
+                {imgSrc:'',type:'',title:'angela2',tips:'375*90px'},
+                {imgSrc:'',type:'',title:'angela3',tips:'375*90px'},
+                {imgSrc:'',type:'',title:'angela4',tips:'375*90px'},
+                {imgSrc:'',type:'',title:'angela5',tips:'375*90px'},
+                {imgSrc:'',type:'',title:'angela6',tips:'375*90px'},
+                {imgSrc:'',type:'',title:'angela7',tips:'375*90px'},
+                {imgSrc:'',type:'',title:'angela8',tips:'375*90px'},
+                {imgSrc:'',type:'',title:'angela9',tips:'375*90px'},
+                {imgSrc:'',type:'',title:'angela10',tips:'375*90px'},
+                {imgSrc:'',type:'',title:'angela11',tips:'375*90px'},
+                {imgSrc:'',type:'',title:'angela12',tips:'375*90px'},
+                {imgSrc:'',type:'',title:'angela13',tips:'375*90px'}
+            ]
         },
         computed: {},
         methods: {
@@ -84,8 +101,6 @@
 
             },
             tplItemCLick(type, data){
-                console.log(data);
-                console.log(type);
                 if (type === 'more') {
                     this.$router.push('editmodule_banner_addormodify');
                     return false;
@@ -93,14 +108,23 @@
                 if (data.type && data.type === 'more') {
 //                    this.$router.push(data.data);
                 }
+                if (data.type && data.type === 'moveDown') {
+                    this.moveDownSortable(this.bannerList,data.data)
+                }
+                if (data.type && data.type === 'moveUp') {
+                    this.moveUpSortable(this.bannerList,data.data);
+                }
                 if (data.type && data.type === 'delete') {
 //                    this.$router.push(data.data)
+                    this.deleteBanner(data.data)
+                    return false;
                 }
                 if (data.type && data.type === 'default') {
 //                    this.$router.push(data.data)
                 }
                 if (data.type && data.type === 'primary') {
 //                    this.$router.push(data.data)
+                    this.moveTopSortable(this.bannerList,data.data);
                 }
                 data.callback && data.callback()
             },
@@ -109,7 +133,26 @@
             },
             editItemCLick(data){
                 this.tplItemCLick('item', data)
-            }
+            },
+            deleteBanner(index){
+                let _this = this;
+                let data = this.bannerList[index];
+                this.$store.commit('confirm', {
+                    data: {
+                        title: '确定删除“' + data.title + 'banner广告”吗？',
+                        list: [{id: 1, text: '确定删除'}]
+                    },
+                    onConfirm(data, cancel){
+                        if (data.id === 1) {
+                            _this.bannerList.splice(index, 1);
+                        }
+                        cancel();
+                    },
+                    onCancel(cancel) {
+                        cancel();
+                    }
+                });
+            },
         }
     }
 </script>

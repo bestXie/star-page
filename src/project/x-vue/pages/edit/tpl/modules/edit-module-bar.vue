@@ -11,7 +11,6 @@
     }
 
     .edit-module-bar-item-box {
-        /*width: 180px;*/
         height: .98rem;
         flex: 1;
         background: #fff;
@@ -33,22 +32,24 @@
 
     .edit-module-bar-item-icon {
         width: .5rem;
-        height:.5rem;
+        height: .5rem;
         border-radius: .08rem;
         background: #ccc;
         margin-bottom: .05rem;
 
     }
-    .edit-module-bar-item-box.hover  .edit-module-bar-item-icon{
+
+    .edit-module-bar-item-box.hover .edit-module-bar-item-icon {
         background: #26a6ff;
     }
-    .edit-module-bar-item-box.hover .edit-module-bar-item p{
+
+    .edit-module-bar-item-box.hover .edit-module-bar-item p {
         color: #26a6ff;
     }
 </style>
 
 <template>
-    <div class="edit-module-bar-wrapper" >
+    <div class="edit-module-bar-wrapper">
         <div class="edit-module-bar-item-box" v-for="item,index in propData" :key="index"
              @click="starClick(item.name)" :class="{'hover':item.hover}">
             <div class="edit-module-bar-item">

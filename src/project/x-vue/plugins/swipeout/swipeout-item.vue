@@ -87,21 +87,28 @@
                 type: String,
                 default: 'reveal'
             },
+            withData: {default: {}},
             propData: {default: {}},
-            width:''
+            width:'',
+            defaultOpenRight:Boolean
         },
         mounted () {
             this.$nextTick(() => {
-                this.target = this.$refs.content
+                this.target = this.$refs.content;
                 if (this.$slots['left-menu']) {
-                    this.hasLeftMenu = true
+                    this.hasLeftMenu = true;
                     this.caculateMenuWidth('left')
                 }
                 if (this.$slots['right-menu']) {
-                    this.hasRightMenu = true
+                    this.hasRightMenu = true;
                     this.caculateMenuWidth('right')
                 }
+
+                if(this.defaultOpenRight){
+                    this.openRight();
+                }
             })
+
         },
         methods: {
             caculateMenuWidth (direction) {
@@ -134,7 +141,7 @@
                 }
             },
             start (ev) {
-                this.caculateMenuWidth('right')
+                this.caculateMenuWidth('right');
                 if (this.disabled || this.isOpen || ev.target.nodeName.toLowerCase() === 'button') {
                     return
                 }
@@ -143,8 +150,8 @@
                     if (openItems.length > 0) {
                         openItems.forEach(item => {
                             item.setOffset(0, true)
-                        })
-                        ev.preventDefault()
+                        });
+//                        ev.preventDefault();
                         return
                     }
                 }
@@ -177,7 +184,7 @@
                 }
 
                 if ((this.direction === 'right' && this.distX > 0 && this.hasRightMenu) || (this.direction === 'left' && this.distX < 0 && this.hasLeftMenu)) {
-                    this.valid = true
+                    this.valid = true;
                     ev.preventDefault()
                 }
 
@@ -187,7 +194,7 @@
                     } else if (this.distX < 0 && this.hasRightMenu === false) {
                         this.valid = false
                     } else if (Math.abs(this.distX) > this.sensitivity || Math.abs(this.distY) > this.sensitivity) {
-                        this.valid = Math.abs(this.distX) > Math.abs(this.distY)
+                        this.valid = Math.abs(this.distX) > Math.abs(this.distY);
                     } else {
                         ev.preventDefault()
                     }
@@ -198,8 +205,8 @@
                     if (Math.abs(this.distX) <= this.menuWidth) {
                         this.setOffset(this.distX, false)
                     } else {
-                        const extra = (Math.abs(this.distX) - this.menuWidth) * 0.5
-                        const offset = (this.menuWidth + extra) * (this.distX < 0 ? -1 : 1)
+                        const extra = (Math.abs(this.distX) - this.menuWidth) * 0.5;
+                        const offset = (this.menuWidth + extra) * (this.distX < 0 ? -1 : 1);
 
                         this.setOffset(offset, false)
                     }
@@ -218,21 +225,21 @@
                 }
                 if (this.valid === true) {
                     if (this.distX < 0 && this.direction === 'right') {
-                        const threshold = this.threshold <= 1 ? this.rightMenuWidth * this.threshold : this.threshold
+                        const threshold = this.threshold <= 1 ? this.rightMenuWidth * this.threshold : this.threshold;
 
                         if (this.distX < -threshold) {
-                            this.setOffset(-this.rightMenuWidth, true)
-                            this.$emit('on-open')
+                            this.setOffset(-this.rightMenuWidth, true);
+                            this.$emit('on-open');
                             this.isOpen = true
                         } else {
                             this._setClose()
                         }
                     } else if (this.distX > 0 && this.direction === 'left') {
-                        const threshold = this.threshold <= 1 ? this.leftMenuWidth * this.threshold : this.threshold
+                        const threshold = this.threshold <= 1 ? this.leftMenuWidth * this.threshold : this.threshold;
 
                         if (this.distX > threshold) {
-                            this.setOffset(this.leftMenuWidth, true)
-                            this.$emit('on-open')
+                            this.setOffset(this.leftMenuWidth, true);
+                            this.$emit('on-open');
                             this.isOpen = true
                         } else {
                             this._setClose()
@@ -254,7 +261,7 @@
                 this.direction = ''
             },
             setOffset (x, animated = false, force) {
-                this.isAnimated = animated
+                this.isAnimated = animated;
                 if (this.disabled && !force) {
                     return
                 }
@@ -274,23 +281,23 @@
                     this.distX = this.leftMenuWidth
                 }
                 if (animated && this.target) {
-                    this.target && this.target.classList.add('x-swipeout-content-animated')
-                    var cb = (function (self, target) {
+                    this.target && this.target.classList.add('x-swipeout-content-animated');
+                    let cb = (function (self, target) {
                         return function () {
-                            target.classList.remove('x-swipeout-content-animated')
-                            self.isAnimated = false
-                            target.removeEventListener('webkitTransitionEnd', cb)
+                            target.classList.remove('x-swipeout-content-animated');
+                            self.isAnimated = false;
+                            target.removeEventListener('webkitTransitionEnd', cb);
                             target.removeEventListener('transitionend', cb)
                         }
-                    })(this, this.target)
+                    })(this, this.target);
 
-                    this.target.addEventListener('webkitTransitionEnd', cb)
+                    this.target.addEventListener('webkitTransitionEnd', cb);
                     this.target.addEventListener('transitionend', cb)
                 }
                 this.styles.transform = 'translate3d(' + x + 'px, 0, 0)'
             },
             _setClose (delay = 0) {
-                this.setOffset(0, true)
+                this.setOffset(0, true);
                 this.$emit('on-close');
                 if (!delay) {
                     this.isOpen = false
@@ -303,6 +310,9 @@
             },
             open (position = 'right') {
                 this.setOffset(position === 'right' ? -this.rightMenuWidth : this.leftMenuWidth, true, true)
+            },
+            openRight (position = 'right') {
+                this.setOffset(position === 'right' ? -this.rightMenuWidth : this.leftMenuWidth, false, true)
             },
             close () {
                 this.setOffset(0, true, true)
@@ -326,9 +336,9 @@
                 }
             },
             leftButtonBoxStyle () {
-                let styles = JSON.parse(JSON.stringify(this.buttonBoxStyle))
+                let styles = JSON.parse(JSON.stringify(this.buttonBoxStyle));
                 if (this.transitionMode === 'follow') {
-                    let offset = this.styles.transform.indexOf('(0px, 0, 0)') === -1 ? this.leftMenuWidth - this.distX : this.leftMenuWidth
+                    let offset = this.styles.transform.indexOf('(0px, 0, 0)') === -1 ? this.leftMenuWidth - this.distX : this.leftMenuWidth;
                     styles.transform = `translate3d(-${offset}px, 0, 0)`
                 }
 
@@ -337,7 +347,7 @@
             rightButtonBoxStyle () {
                 let styles = JSON.parse(JSON.stringify(this.buttonBoxStyle));
                 if (this.transitionMode === 'follow') {
-                    let offset = this.styles.transform.indexOf('(0px, 0, 0)') === -1 ? this.rightMenuWidth - Math.abs(this.distX) : this.rightMenuWidth
+                    let offset = this.styles.transform.indexOf('(0px, 0, 0)') === -1 ? this.rightMenuWidth - Math.abs(this.distX) : this.rightMenuWidth;
                     if (offset < 0) {
                         offset = 0
                     }
@@ -349,6 +359,7 @@
 
                 return styles
             }
+
         },
         data () {
             return {
@@ -370,13 +381,19 @@
                 },
                 direction: '',
                 leftMenuWidth: 160,
-                rightMenuWidth: 60,
-
+                rightMenuWidth: 60
             }
         },
         watch: {
             disabled (newVal, oldVal) {
                 if (newVal === true && !oldVal) {
+                    this.setOffset(0, true, true)
+                }
+            },
+            withData (newVal, oldVal) {
+                if (newVal.defaultOpenRight) {
+                    this.openRight();
+                }else{
                     this.setOffset(0, true, true)
                 }
             }

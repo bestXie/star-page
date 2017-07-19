@@ -32,7 +32,7 @@
 </template>
 
 <script>
-    import { bannerMixin } from '../../mixins/bannerMixin';
+    import { bannerMixin } from '../../mixins/modules_bannerMixin';
     import imgSrc from '../../images/banner/image_Module_Banner_750x240px.jpg'
     export default {
         data: function () {

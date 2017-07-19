@@ -18,6 +18,10 @@
         padding-top: .2rem;
 
     }
+    .empty-color{
+        background: url("../../../images/common/icon_common_noColor.png") center no-repeat;
+        background-size: 100%;
+    }
 
 
 
@@ -45,10 +49,10 @@
                         <div class=" bar-container-img x-border-1px-bottom">
                             <div class="bar-container-item-l ">
                                 <div class="bar-container-img-title">模块背景色</div>
-                                <div class="bar-container-img-tips ">#f2f2f2</div>
+                                <div class="bar-container-img-tips " >#f2f2f2</div>
                             </div>
                             <div class="bar-container-item-r">
-                                <div class="bar-container-img-input x-border-1px"></div>
+                                <div class="bar-container-img-input x-border-1px-df" :style="{'backgroundColor':'#f2f2f2'}"></div>
                             </div>
                         </div>
                     </div>
@@ -71,10 +75,10 @@
                         <div class=" bar-container-img x-border-1px-bottom">
                             <div class="bar-container-item-l ">
                                 <div class="bar-container-img-title">图片标题文字颜色</div>
-                                <div class="bar-container-img-tips">#f2f2f2</div>
+                                <div class="bar-container-img-tips">#无色</div>
                             </div>
                             <div class="bar-container-item-r">
-                                <div class="bar-container-img-input"></div>
+                                <div class="bar-container-img-input x-border-1px-df empty-color"></div>
                             </div>
                         </div>
                         <div class=" bar-container-img x-border-1px-bottom">
@@ -83,7 +87,7 @@
                                 <div class="bar-container-img-tips">#f2f2f2</div>
                             </div>
                             <div class="bar-container-item-r">
-                                <div class="bar-container-img-input"></div>
+                                <div class="bar-container-img-input x-border-1px-df" :style="{'backgroundColor':'#f2f2f2'}"></div>
                             </div>
                         </div>
 

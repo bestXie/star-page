@@ -26,7 +26,7 @@ Vue.use(VueScroller);
 import loadingImgSrc from '../images/svg/loading-spin.svg'
 import loadingError from '../images/common/404.png'
 Vue.use(VueLazyload, {
-    preLoad: .3,
+    preLoad: 1.3,
     error: loadingError,
     loading: loadingImgSrc,
     try: 2

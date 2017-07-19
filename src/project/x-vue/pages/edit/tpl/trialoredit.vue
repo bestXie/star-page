@@ -48,8 +48,10 @@
     import editModuleBar from './modules/edit-module-bar.vue'
     import toast from '../../../plugins/toast/index.vue'
     import modifyBar from '../../../components/modifyBar/index.vue'
+    import {sortableMixin} from '../../../mixins/eid_sortableMixin'
     export default {
         components: {editModuleBar, toast, modifyBar},
+        mixins: [sortableMixin],
         name: 'trialoredit',
         data () {
             return {
@@ -221,19 +223,29 @@
             },
 
             moveUpModifyBar(index){
+
+
+
                 index = this.moveModifyIndex;
-                if (this.moveModifyIndex === 0) {
-                    alert("到顶啦！");
-                    return false
-                }
-                this.moduleList.splice(index - 1, 0, (this.moduleList[index]));
-                this.moduleList.splice(index + 1, 1);
-                this.moveModifyIndex--;
-                this.tplGoScroller('up');
+                let _this=this;
+
+                this.moveUpSortable(this.moduleList,index,function () {
+                    _this.moveModifyIndex--;
+                    _this.tplGoScroller('up');
+                });
 
             },
             moveDownModifyBar(index){
                 index = this.moveModifyIndex;
+                let _this=this;
+
+                this.moveDownSortable(this.moduleList,index,function () {
+                    _this.moveModifyIndex++;
+                    _this.tplGoScroller('down');
+                });
+
+/*
+
                 if (index === this.moduleList.length - 1) {
                     alert("已经是最后一项啦！");
                     return false;
@@ -241,9 +253,7 @@
                 this.moduleList.splice(index + 2, 0, (this.moduleList[index]));
                 this.moduleList.splice(index, 1);
                 this.moveModifyIndex++;
-                this.tplGoScroller('down');
-
-
+                this.tplGoScroller('down');*/
             },
             tplGoScroller(type){
                 let $index = this.moveModifyIndex;
@@ -255,10 +265,10 @@
                 let moveTop_h = tpl_scroller_item_EL[0].offsetTop;
                 let moveTop_t = tpl_scroller_box_EL.offsetHeight;
 //                let moveTop_h2 = ((top - move_h) > 0 ? 0 : (top - move_h));
-                console.log('move_h:')
-                console.log(top, move_h, moveTop_h, moveTop_t)
-                console.log(top - move_h)
-                let moveto = type == 'down' ? top + move_h : top - move_h;
+                console.log('move_h:');
+                console.log(top, move_h, moveTop_h, moveTop_t);
+                console.log(top - move_h);
+                let moveto = type === 'down' ? top + move_h : top - move_h;
                 tpl_scroller_EL.scrollTo(0, moveto, true);
             },
 

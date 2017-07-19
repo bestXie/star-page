@@ -32,7 +32,6 @@
         box-sizing: border-box;
     }
 
-
     .swipeout-item-content.swipeout-item-history {
         background: #fffcd3;
     }
@@ -52,17 +51,18 @@
         <div class="history-item-wrapper">
             <swipeout>
                 <swipeout-item transition-mode="follow" v-for="item,index in propData.list" :key="index"
-                               :propData="index"
+                               :propData="index" withData="'{}'"
                                @starClick="starClick">
                     <div slot="content" class="swipeout-item-content x-border-1px-bottom"
-                         :style="{'backgroundColor':item.bgcolor}">
+                         :style="{'backgroundColor':bgcolor}">
                         <history-item :propData="item"></history-item>
                     </div>
-                    <div slot="right-menu" v-if="item.current!='1'" >
+                    <div slot="right-menu" v-if="item.current!='1'">
                         <swipeout-button class="swipeout-item-button" :width="width" text="重命名"></swipeout-button>
                         <swipeout-button class="swipeout-item-button" :width="width" v-if="item.star!='1'" text="收藏"
                                          type="primary"></swipeout-button>
-                        <swipeout-button class="swipeout-item-button" :width="width" text="删除" type="delete"></swipeout-button>
+                        <swipeout-button class="swipeout-item-button" :width="width" text="删除"
+                                         type="delete"></swipeout-button>
                     </div>
                 </swipeout-item>
             </swipeout>
@@ -83,13 +83,16 @@
         name: 'history-box',
         data: function () {
             return {
-                width:0
+                width: 0
             }
         },
         props: {
             propData: {
                 default: {barData: {}}
-            }
+            },
+            bgcolor: {
+                default: ''
+            },
         },
         computed: {},
         mounted: function () {

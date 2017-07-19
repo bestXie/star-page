@@ -113,6 +113,8 @@
 
     import {getStore, setStore} from '../../../util/index'
     import EditMouleFotter from '../../../components/editMouleFotter/index.vue'
+
+
     export default {
         name: 'page_banner_index',
         components: {EditMouleFotter},

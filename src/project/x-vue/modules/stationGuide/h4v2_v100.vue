@@ -27,7 +27,7 @@
 </template>
 
 <script>
-    import { stationGuideMixin } from '../../mixins/stationGuideMixin'
+    import { stationGuideMixin } from '../../mixins/modules_stationGuideMixin'
     export default {
         mixins: [stationGuideMixin]
     }

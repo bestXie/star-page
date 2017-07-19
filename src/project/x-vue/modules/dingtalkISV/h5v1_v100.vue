@@ -27,7 +27,7 @@
 </template>
 
 <script>
-    import { dingtalkISV } from '../../mixins/dingtalkISVMixin'
+    import { dingtalkISV } from '../../mixins/modules_dingtalkISVMixin'
     export default {
         mixins: [dingtalkISV]
     }

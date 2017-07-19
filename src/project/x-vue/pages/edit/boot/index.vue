@@ -33,23 +33,32 @@
         width: 100%;
         height: 100%;
     }
+
     //公用提示语的颜色
     .x-tips-color {
         color: #0076ff;
     }
+
     //公用下边框
     .x-border-1px-bottom {
         border-bottom: 1px #c8c8c8 solid;
     }
+
     //公用边框
     .x-border-1px {
         border: solid 1px #ccc;
     }
+
+    .x-border-1px-df {
+        border: solid 1px #dfdfdf;
+    }
+
     //公用页面顶部的距离
     .x-h-common {
         width: 100%;
         height: .3rem;
     }
+
     /*公用标题 start*/
     //公用标题盒模型
     .x-title-box {
@@ -58,6 +67,7 @@
         max-width: 100%;
         padding-right: .4rem;
     }
+
     //公用提示标题
     .x-title-box .title {
         font-size: .34rem;
@@ -67,6 +77,7 @@
         color: #4a4a4a;
         font-weight: 300;
     }
+
     //公用提示语样式
     .x-title-box .title-tips {
         font-size: .24rem;
@@ -76,31 +87,36 @@
         color: #9b9b9b;
 
     }
+
     /*公用标题 enf*/
     //星任务 右箭头ICOn
     .x-r-icon {
         width: .16rem;
         height: .26rem;
     }
+
     //星ICON
     .x-icon-star {
         width: .4rem;
-        height:.4rem;
+        height: .4rem;
         margin-right: .32rem;
         background: #ccc;
     }
+
     //文字溢出
     .x-text-overflow {
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
     }
+
     //flex-center 居中
     .x-flex-center {
         -ms-flex-align: center;
         -webkit-align-items: center;
         align-items: center;
     }
+
     //高斯模糊效果
     .x-filter {
         filter: blur(10px);
@@ -109,14 +125,14 @@
         -webkit-filter: blur(10px);
     }
 
-    ._v-content{
+    ._v-content {
         min-height: 100%;
     }
-
 
     .h-60 {
         height: .6rem;
     }
+
     .h-30 {
         height: .3rem;
     }
@@ -199,8 +215,7 @@
     .bar-container-img .bar-container-img-input {
         width: 1.2rem;
         height: 1.2rem;
-        background: #ccc;
-        border-radius: .2rem;
+        border-radius: 6px;
     }
 
     .bar-container-img .bar-container-img-title {
@@ -215,8 +230,6 @@
         color: #8f8f8f;
         width: 100%;
     }
-
-
 
     .x-switch-item-box {
         display: flex;
@@ -301,13 +314,16 @@
         border-color: #45DB5E;
         background-color: #45DB5E;
     }
-    .swipeout-item-box{
+
+    .swipeout-item-box {
         padding-right: .3rem;
     }
+
     .x-switch:checked:after {
         -webkit-transform: translateX(.39rem);
         transform: translateX(.39rem);
     }
+
     .bar-title-wrapper {
         padding-bottom: .2rem;
         font-size: .28rem;
@@ -315,5 +331,6 @@
         padding-left: .3rem;
         box-sizing: border-box;
     }
+
     /*... bar end*/
 </style>

@@ -44,9 +44,8 @@
         <div class="swipeout-item-content-l" :class="{'swipeout-item-add':propData.type=='add'}"></div>
         <div class="swipeout-item-content-c">
             <div class="x-title-box">
-                <h3 class="title" v-if="propData.type!='add'">告白气球</h3>
-                <h3 class="title" v-if="propData.type=='add'">添加banner图片</h3>
-                <p class="title-tips" v-if="propData.type!='add'">375*90px</p>
+                <h3 class="title">{{propData.title}}</h3>
+                <p class="title-tips" v-if="propData.type!='add'">{{propData.tips}}</p>
             </div>
         </div>
         <div class="swipeout-item-content-r">

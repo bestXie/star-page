@@ -24,14 +24,13 @@
         <div class="banner-item">
             <img  v-lazy="propData.imgSrc"  alt="">
             <!--<img class="banner-img" src="http://hilongjw.github.io/vue-lazyload/dist/test12.jpg" alt="">-->
-
         </div>
     </div>
 </template>
 
 <script>
 
-    import {bannerMixin} from '../../mixins/bannerMixin'
+    import {bannerMixin} from '../../mixins/modules_bannerMixin'
     import imgSrc from '../../images/banner/image_Module_Banner_750x300px.jpg'
     export default {
         data: function () {

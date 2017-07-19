@@ -257,7 +257,7 @@
                     draggingElement = null
                 }
             }
-        }
+        };
         return draggableComponent
     }
 

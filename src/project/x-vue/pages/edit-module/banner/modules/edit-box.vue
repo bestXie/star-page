@@ -43,14 +43,13 @@
         <div class="edit-item-wrapper">
             <swipeout>
                 <swipeout-item transition-mode="follow" v-for="item,index in propData" :key="index"
-                               :propData="item"
-                               @starClick="starClick">
+                               :propData="index" :withData="item" :defaultOpenRight="item.defaultOpenRight" @starClick="starClick">
                     <div slot="content" class="swipeout-item-content x-border-1px-bottom">
                         <edit-item :propData="item"></edit-item>
                     </div>
                     <div slot="right-menu" v-if="item.type!='add'">
-                        <swipeout-button class="swipeout-item-button" :width="width" text="上移"></swipeout-button>
-                        <swipeout-button class="swipeout-item-button" :width="width" text="下移"></swipeout-button>
+                        <swipeout-button class="swipeout-item-button" :width="width" text="上移" type="moveUp"></swipeout-button>
+                        <swipeout-button class="swipeout-item-button" :width="width" text="下移" type="moveDown"></swipeout-button>
                         <swipeout-button class="swipeout-item-button" :width="width" text="置顶" type="primary"></swipeout-button>
                         <swipeout-button class="swipeout-item-button" :width="width" text="删除" type="delete"></swipeout-button>
                     </div>
@@ -83,6 +82,7 @@
         },
         computed: {},
         mounted: function () {
+            console.log(this.propData);
             this.width = document.documentElement.style.fontSize.match(/(\d+(?:\.\d+)?)/)[0] * 1.48;
             if (this.$refs.swipeoutItemButton) {
 

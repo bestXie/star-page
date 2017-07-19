@@ -38,7 +38,7 @@
     }
     //页面背景定义
     .app-wrapper {
-        background-color: #f8f8f8;
+        background-color: #F2F2F2;
         width: 100%;
         height: 100%;
         max-width: 750px;

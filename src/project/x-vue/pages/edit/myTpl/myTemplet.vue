@@ -179,7 +179,7 @@
             </section>
 
             <section class="history-wrapper" v-if="tabList[1].current">
-                <history-box :propData="snapshotData" @starClick="snapshotItemCLick"></history-box>
+                <history-box :propData="snapshotData" :bgcolor="'#fffcd3'" @starClick="snapshotItemCLick"></history-box>
 
 
                 <history-box :propData="currentData" @starClick="currentItemCLick"></history-box>

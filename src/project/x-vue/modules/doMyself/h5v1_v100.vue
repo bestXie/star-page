@@ -27,7 +27,7 @@
 </template>
 
 <script>
-    import { doMyself } from '../../mixins/doMyselfMixin'
+    import { doMyself } from '../../mixins/modules_doMyselfMixin'
     export default {
         mixins: [doMyself]
     }
