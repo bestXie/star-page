@@ -15,8 +15,6 @@
             stylebg: ''
         },
         mounted: function () {
-            console.log(this.show,this.stylebg);
-
         },
         methods: {
             maskClick(){

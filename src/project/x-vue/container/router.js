@@ -35,7 +35,7 @@ const editApp_addCmpanyApp = r => require.ensure([], () => r(require('../pages/e
 const editTpl_trialoredit = r => require.ensure([], () => r(require('../pages/edit/tpl/trialoredit.vue')), 'pages_editTpl_trialoredit');
 
 // 设置  全局设置
-const editGlobal_global = r => require.ensure([], () => r(require('../pages/edit/global/global.vue')), 'pages_editGlobal_global');
+const editGlobal_style = r => require.ensure([], () => r(require('../pages/edit/global/style.vue')), 'pages_editGlobal_style');
 // 设置 颜色设置
 const editGlobal_color = r => require.ensure([], () => r(require('../pages/edit/global/color.vue')), 'pages_editGlobal_color');
 
@@ -55,13 +55,11 @@ const editModule_banner_addormodify = r => require.ensure([], () => r(require('.
 const editModule_dingtalkISV = r => require.ensure([], () => r(require('../pages/edit-module/dingtalkISV/index.vue')), 'pages_editModule_dingtalkISV');
 const editModule_dingtalkISV_edit = r => require.ensure([], () => r(require('../pages/edit-module/dingtalkISV/edit.vue')), 'pages_editModule_dingtalkISV_edit');
 const editModule_dingtalkISV_style = r => require.ensure([], () => r(require('../pages/edit-module/dingtalkISV/style.vue')), 'pages_editModule_dingtalkISV_style');
-const editModule_dingtalkISV_addormodify = r => require.ensure([], () => r(require('../pages/edit-module/dingtalkISV/addormodify.vue')), 'pages_editModule_dingtalkISV_addormodify');
 
 //模块编辑 doMyself 自定义
 const editModule_doMyself= r => require.ensure([], () => r(require('../pages/edit-module/doMyself/index.vue')), 'pages_editModule_doMyself');
 const editModule_doMyself_edit = r => require.ensure([], () => r(require('../pages/edit-module/doMyself/edit.vue')), 'pages_editModule_doMyself_edit');
 const editModule_doMyself_style = r => require.ensure([], () => r(require('../pages/edit-module/doMyself/style.vue')), 'pages_editModule_doMyself_style');
-const editModule_doMyself_addormodify = r => require.ensure([], () => r(require('../pages/edit-module/doMyself/addormodify.vue')), 'pages_editModule_doMyself_addormodify');
 
 //模块编辑 stationGuide 企业地图
 const editModule_stationGuide= r => require.ensure([], () => r(require('../pages/edit-module/stationGuide/index.vue')), 'pages_editModule_stationGuide');
@@ -195,9 +193,9 @@ const routes = [
                 component: common_routerWarpper,
                 children: [
                     {
-                        path: '/editGlobal_global',
-                        name: 'editGlobal_global',
-                        component: editGlobal_global
+                        path: '/editGlobal_style',
+                        name: 'editGlobal_style',
+                        component: editGlobal_style
                     },
                     {
                         path: '/editGlobal_color',
@@ -259,11 +257,6 @@ const routes = [
                         name: 'editModule_dingtalkISV_style',
                         component: editModule_dingtalkISV_style
                     },
-                    {
-                        path: '/editModule_dingtalkISV_addormodify',
-                        name: 'editModule_dingtalkISV_addormodify',
-                        component: editModule_dingtalkISV_addormodify
-                    },
                     /*自定义应用*/
 
                     {
@@ -281,11 +274,7 @@ const routes = [
                         name: 'editModule_doMyself_style',
                         component: editModule_doMyself_style
                     },
-                    {
-                        path: '/editModule_doMyself_addormodify',
-                        name: 'editModule_doMyself_addormodify',
-                        component: editModule_doMyself_addormodify
-                    },
+
 
                     /*企业地图*/
                     {

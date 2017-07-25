@@ -33,7 +33,8 @@
                                 <div class="input-label">模块名称</div>
                             </div>
                             <div class="bar-container-item-r">
-                                <input class="input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"
+                                <input class="input" autocomplete="off" autocapitalize="off" autocorrect="off"
+                                       spellcheck="false"
                                        type="text" placeholder="广告图片" maxlength="10">
                             </div>
                         </div>
@@ -46,6 +47,8 @@
                     <div class="edit-item-box">
                         <edit-box :propData="propDataAdd" @starClick="editItemAddCLick"></edit-box>
                         <edit-box :propData="bannerList" @starClick="editItemCLick"></edit-box>
+                        <div class="h-60"></div>
+                        <div class="h-60"></div>
                     </div>
 
                 </section>
@@ -79,20 +82,20 @@
             }
         },
         mounted () {
-            this.bannerList=[
-                {imgSrc:'',type:'',title:'angela1',tips:'375*90px'},
-                {imgSrc:'',type:'',title:'angela2',tips:'375*90px'},
-                {imgSrc:'',type:'',title:'angela3',tips:'375*90px'},
-                {imgSrc:'',type:'',title:'angela4',tips:'375*90px'},
-                {imgSrc:'',type:'',title:'angela5',tips:'375*90px'},
-                {imgSrc:'',type:'',title:'angela6',tips:'375*90px'},
-                {imgSrc:'',type:'',title:'angela7',tips:'375*90px'},
-                {imgSrc:'',type:'',title:'angela8',tips:'375*90px'},
-                {imgSrc:'',type:'',title:'angela9',tips:'375*90px'},
-                {imgSrc:'',type:'',title:'angela10',tips:'375*90px'},
-                {imgSrc:'',type:'',title:'angela11',tips:'375*90px'},
-                {imgSrc:'',type:'',title:'angela12',tips:'375*90px'},
-                {imgSrc:'',type:'',title:'angela13',tips:'375*90px'}
+            this.bannerList = [
+                {imgSrc: '', type: '', title: 'angela1', tips: '375*90px'},
+                {imgSrc: '', type: '', title: 'angela2', tips: '375*90px'},
+                {imgSrc: '', type: '', title: 'angela3', tips: '375*90px'},
+                {imgSrc: '', type: '', title: 'angela4', tips: '375*90px'},
+                {imgSrc: '', type: '', title: 'angela5', tips: '375*90px'},
+                {imgSrc: '', type: '', title: 'angela6', tips: '375*90px'},
+                {imgSrc: '', type: '', title: 'angela7', tips: '375*90px'},
+                {imgSrc: '', type: '', title: 'angela8', tips: '375*90px'},
+                {imgSrc: '', type: '', title: 'angela9', tips: '375*90px'},
+                {imgSrc: '', type: '', title: 'angela10', tips: '375*90px'},
+                {imgSrc: '', type: '', title: 'angela11', tips: '375*90px'},
+                {imgSrc: '', type: '', title: 'angela12', tips: '375*90px'},
+                {imgSrc: '', type: '', title: 'angela13', tips: '375*90px'}
             ]
         },
         computed: {},
@@ -101,31 +104,33 @@
 
             },
             tplItemCLick(type, data){
+                console.log(type, data)
                 if (type === 'more') {
                     this.$router.push('editmodule_banner_addormodify');
                     return false;
                 }
-                if (data.type && data.type === 'more') {
-//                    this.$router.push(data.data);
+                if (type === 'item' && data.type) {
+                    if (data.type === 'more') {
+                        this.$router.push('editmodule_banner_addormodify');
+                        return false;
+                    }
+                    if (data.type === 'moveDown') {
+                        this.moveDownSortable(this.bannerList, data.data)
+                    }
+                    if (data.type === 'moveUp') {
+                        this.moveUpSortable(this.bannerList, data.data);
+                    }
+                    if (data.type === 'delete') {
+                        this.deleteBanner(data.data);
+                        return false;
+                    }
+                    if (data.type === 'default') {
+                    }
+                    if (data.type === 'primary') {
+                        this.moveTopSortable(this.bannerList, data.data);
+                    }
                 }
-                if (data.type && data.type === 'moveDown') {
-                    this.moveDownSortable(this.bannerList,data.data)
-                }
-                if (data.type && data.type === 'moveUp') {
-                    this.moveUpSortable(this.bannerList,data.data);
-                }
-                if (data.type && data.type === 'delete') {
-//                    this.$router.push(data.data)
-                    this.deleteBanner(data.data)
-                    return false;
-                }
-                if (data.type && data.type === 'default') {
-//                    this.$router.push(data.data)
-                }
-                if (data.type && data.type === 'primary') {
-//                    this.$router.push(data.data)
-                    this.moveTopSortable(this.bannerList,data.data);
-                }
+
                 data.callback && data.callback()
             },
             editItemAddCLick(data){

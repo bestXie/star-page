@@ -20,7 +20,7 @@
 
     .tab-item {
         flex: 1;
-        height:100%;
+        height: 100%;
         box-sizing: border-box;
         display: flex;
         -ms-flex-pack: center;
@@ -85,7 +85,7 @@
     }
 
     .blank-templet {
-        font-size:1rem;
+        font-size: 1rem;
         text-align: center;
         color: #ccc;
     }
@@ -120,7 +120,7 @@
 
     .templet-tips-top {
         width: 100%;
-        margin-top:1.4rem;
+        margin-top: 1.4rem;
 
         color: #4a4a4a;
         font-size: .24rem;
@@ -210,6 +210,7 @@
     import HistoryBox from './modules/history-box.vue'
     import {ContentEmpty}from '../../../plugins/content-empty/';
     import {getCompanyTemplate} from '../../../api/index.js'
+    import {getStore, setStore} from '../../../util/index';
     export default {
         components: {
             Swipeout,
@@ -231,12 +232,9 @@
                     {title: '111', imgSrc: '', id: ''},
                     {title: '111', imgSrc: '', id: ''}
                 ],
-                historyData: {
-                },
-                currentData: {
-                },
-                snapshotData: {
-                }
+                historyData: {},
+                currentData: {},
+                snapshotData: {}
             }
         },
         mounted () {
@@ -246,6 +244,15 @@
         methods: {
             init(){
                 this.getCompanyTemplate();
+                this.getStoreMyTempletTabListId();
+            },
+            getStoreMyTempletTabListId(){
+                let tabList_id = getStore('myTemplet_tabList_id')||'1';
+                this.tabList = this.tabList.filter(function (item) {
+                    item.current = (item.id === tabList_id);
+                    return item;
+                });
+                console.log(tabList_id)
             },
             async pageinit(){
                 let res = await getCasCheck({email: 'ceshi@.ddd2.com'}).then(res => {
@@ -254,11 +261,13 @@
                 console.log(res, 3)
             },
             async getCompanyTemplate(){
+                let _this=this;
                 let res = await getCompanyTemplate({companyId: 101}).catch(res => {
+                    _this.$store.commit('toast', {content: '数据请求异常'});
                     console.log('getCompanyTemplate报错了');
                     console.log(res);
                 });
-                if(res){
+                if (res) {
                     this.setCompanyTemplateDta(res.data.data);
                 }
             },
@@ -300,9 +309,11 @@
                 }
             },
             tabTtemEvent(index){
-                console.log(index)
-                this.tabListr = this.tabList.filter(function (item, idx) {
+                this.tabList = this.tabList.filter(function (item, idx) {
                     item.current = (idx === index);
+                    if(idx === index){
+                        setStore('myTemplet_tabList_id',item.id)
+                    }
                     return item;
                 });
             },
@@ -335,7 +346,7 @@
                 }
                 this.$router.push('edittpl_trialoredit')
             },
-            tplItemCLick(type,data){
+            tplItemCLick(type, data){
                 console.log(data);
                 console.log(type);
                 if (data.type && data.type === 'more') {
@@ -353,13 +364,13 @@
                 data.callback && data.callback()
             },
             historyItemCLick(data){
-                this.tplItemCLick('history',data)
+                this.tplItemCLick('history', data)
             },
             snapshotItemCLick(data){
-                this.tplItemCLick('snapshot',data)
+                this.tplItemCLick('snapshot', data)
             },
             currentItemCLick(data){
-                this.tplItemCLick('currentI',data)
+                this.tplItemCLick('currentI', data)
             }
         }
     }

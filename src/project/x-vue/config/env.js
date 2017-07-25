@@ -17,13 +17,17 @@ let imgBaseUrl = 'http://apptestuat.fosun.org/';
 
 
 if (process.env.NODE_ENV == 'development') {//开发
-    baseUrl = 'http://10.160.192.5:8086/star/';
+
+    baseUrl = 'http://10.160.192.15' + ':8086/star/';
+
 } else if (process.env.NODE_ENV == 'production') {//生产
-    // baseUrl = 'http://ouat.fosun.com'
+
 } else if (process.env.NODE_ENV == 'local') {//测试
+
     baseUrl = 'http://ouat.fosun.com'
+
 }
-console.log('baseUrl',baseUrl);
+console.log('baseUrl', baseUrl);
 
 export {
     baseUrl,

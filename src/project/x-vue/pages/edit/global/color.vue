@@ -112,7 +112,7 @@
                     </div>
                     <swipeout>
                         <swipeout-item transition-mode="follow" class="swipeout-item-content-box"
-                                       v-for="item,index in customList" :key="index"
+                                       v-for="item,index in customList" :key="index"  :withData="item"
                                        :propData="index"
                                        @starClick="starClick">
                             <div slot="content" class="swipeout-item-content"
@@ -121,7 +121,7 @@
                                 <div class="swipeout-item-content-right">100%</div>
                             </div>
                             <div slot="right-menu" class="swipeout-item-button-box">
-                                <swipeout-button class="swipeout-item-button" text="删除" type="delete"></swipeout-button>
+                                <swipeout-button class="swipeout-item-button" :width="width" text="删除" type="delete"></swipeout-button>
                             </div>
                         </swipeout-item>
                     </swipeout>
@@ -167,11 +167,13 @@
                     {id: '', backgroundColor: '#ccc'},
                     {id: '', backgroundColor: '#ccc'},
                     {id: '', backgroundColor: '#ccc'}
-                ]
+                ],
+                width:0
             }
         },
         mounted () {
             this.setPageTitle('我的模板');
+            this.width = document.documentElement.style.fontSize.match(/(\d+(?:\.\d+)?)/)[0] * 1.48;
         },
         computed: {},
         methods: {

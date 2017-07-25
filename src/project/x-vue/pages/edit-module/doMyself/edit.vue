@@ -2,242 +2,282 @@
     .wrapper {
         display: flex;
         width: 100%;
-        padding-bottom: 1.3rem;
+        padding-top: .7rem;
         height: 100%;
         box-sizing: border-box;
     }
 
-    .banner-wrapper {
+    .doMyself-edit-wrapper {
         width: 100%;
         height: 100%;
         box-sizing: border-box;
         position: relative;
     }
 
-    .banner-item-wrapper {
+    .doMyself-edit-box {
+        padding-top: .2rem;
+    }
+
+    .append-edit-wrapper {
         width: 100%;
+        background: #fff;
+    }
+
+    .append-edit-item {
         position: relative;
-    }
-
-    .banner-box {
-        width: 100%;
-        height: 100%;
-    }
-
-    .select-warpper {
-        width: 100%;
-    }
-
-    .title-box {
-        padding-top: .6rem;
-        text-align: center;
-        font-size: .28rem;
-        color: #666;
-        padding-bottom: .2rem;
-    }
-
-    .bg-3BD4B6 {
-        background: #3BD4B6;
-    }
-
-    .select-warpper {
-        position: relative;
-    }
-
-    .select-item-current {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        border: 4px solid #fe3824;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        box-sizing: border-box;
-        right: 0;
+        display: -ms-flexbox;
         display: flex;
-        justify-content: flex-end;
-        align-items: flex-start;
     }
 
-    .select-item-current-tips {
-        width: 1.96rem;
-        height: .46rem;
-        background: #fe3824;
-        font-size: .24rem;
-        color: #fff;
+    .contentleft {
+        width: 1.04rem;
+        padding-left: .3rem;
+        padding-right: .3rem;
+        box-sizing: border-box;
+        display: -ms-flexbox;
         display: flex;
+        -ms-flex-align: center;
         align-items: center;
-        justify-content: center;
-
+        background: #fff;
     }
 
-    .select-item-hover {
+    .contentleft-c {
         width: 100%;
-        height: 100%;
-        position: absolute;
-        border: .04rem solid #0076FF;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        box-sizing: border-box;
+        height: .44rem;
+        border-radius: 50%;
     }
 
+    .append {
+        background: url("../../../images/common/icon_common_select_add.png") center no-repeat;
+        background-size: 100%;
+    }
+
+    .append-edit-content {
+        width: 100%;
+        height: 1.3rem;
+        -ms-flex: 1;
+        flex: 1;
+        display: -ms-flexbox;
+        display: flex;
+        box-sizing: border-box;
+        -ms-flex-align: center;
+        align-items: center;
+        overflow: hidden;
+        background: #fff;
+    }
+
+    .append-edit-content-l {
+        width: .8rem;
+        height: .8rem;
+        background: #FE4275;
+        border-radius: 10px;
+    }
+
+    .append-edit-content-c {
+        flex: 1;
+        overflow: hidden;
+    }
+
+    .x-border-1px-bottom {
+        position: relative;
+        border-bottom: 1px #c8c8c8 solid;
+    }
+
+    .append-edit-tips {
+        background: #fff;
+        padding-left: .3rem;
+
+    }
+
+    .append-edit-tips .append-edit-content-l {
+        background: #f2f2f2 url("../../../images/common/icon_common_isv_noImage.png") center no-repeat;
+        background-size: 60%;
+        border: 1px #ccc solid;
+    }
+    .x-title-box .title{
+        font-size: .28rem;
+        color: #9b9b9b;
+    }
 
 </style>
 
 <template>
     <div class="wrapper">
-        <section class="banner-wrapper">
+        <toast :propData="toastData" @starClick="toastCLick"></toast>
+        <section class="doMyself-edit-wrapper">
             <scroller>
-                <div class="banner-item-wrapper" v-for="item,index in moduleList" :key="index"
-                     @click="starClick(index)">
-                    <div class="title-box">
-                        <p>【模块】 banner {{item.spec}} {{item.pd ? '内边距5px' : ''}}</p>
-                    </div>
-                    <div class="select-warpper">
-
-                        <component v-bind:is="item.name" :propData="item"></component>
-                        <div class="select-item-current" v-if="item.current">
-                            <div class="select-item-current-tips">当前使用</div>
+                <section class="doMyself-edit-box">
+                    <div class="bar-container-wrapper">
+                        <div class="bar-container-item-box x-border-1px-bottom">
+                            <div class="bar-container-item-l">
+                                <div class="input-label">模块名称</div>
+                            </div>
+                            <div class="bar-container-item-r">
+                                <input class="input" autocomplete="off" autocapitalize="off" autocorrect="off"
+                                       spellcheck="false"
+                                       type="text" placeholder="请填写（5个字以内）" maxlength="10">
+                            </div>
                         </div>
-                        <div class="select-item-hover" v-if="item.hover"></div>
                     </div>
-                </div>
+
+                    <div class="h-60"></div>
+                    <div class="bar-title-wrapper x-border-1px-bottom">
+                        <p>已选({{moduleData.length || 0}}) 根据你选择的模块，默认展示前4个</p>
+                    </div>
+
+                    <div class="edit-item-box">
+                        <edit-box :propData="moduleData" :subtractType="subtractType"
+                                  @starClick="editItemCLick"></edit-box>
+
+                        <div class="append-edit-item append-edit-tips" v-if="moduleData.length<=0">
+                            <div class="append-edit-content x-border-1px-bottom">
+                                <div class="append-edit-content-l"></div>
+                                <div class="append-edit-content-c">
+                                    <div class="x-title-box">
+                                        <h3 class="title">暂无应用</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="h-60"></div>
+                    <div class="bar-title-wrapper x-border-1px-bottom">
+                        <p>未选({{moduleDataList.length || 0}})</p>
+                    </div>
+
+                    <div class="edit-item-box">
+
+                        <div class="append-edit-wrapper">
+                            <div class="append-edit-item" v-for="item,index in moduleDataList" :key="index">
+                                <div class="contentleft" @click="editItemCLick({data: index,type: 'append'}) ">
+                                    <div class="contentleft-c append"></div>
+                                </div>
+                                <div class="append-edit-content x-border-1px-bottom">
+                                    <div class="append-edit-content-l"></div>
+                                    <div class="append-edit-content-c">
+                                        <div class="x-title-box">
+                                            <h3 class="title">{{item.title}}</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="append-edit-item append-edit-tips" v-if="moduleDataList.length<=0">
+                            <div class="append-edit-content x-border-1px-bottom">
+                                <div class="append-edit-content-l"></div>
+                                <div class="append-edit-content-c">
+                                    <div class="x-title-box">
+                                        <h3 class="title">暂无应用</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="h-60"></div>
+                    <div class="h-60"></div>
+                </section>
             </scroller>
         </section>
-        <edit-moule-fotter @starClick="editMouleFotterEvent"></edit-moule-fotter>
     </div>
 </template>
 
 <script>
-
-    import {getStore, setStore} from '../../../util/index'
-    import EditMouleFotter from '../../../components/editMouleFotter/index.vue'
+    import {getStore, setStore} from '../../../util/index';
+    import toast from '../../../plugins/toast/index.vue'
+    import EditBox from './modules/edit-box.vue'
+    import {sortableMixin} from '../../../mixins/eid_sortableMixin'
     export default {
         name: 'page_banner_index',
-        components: {EditMouleFotter},
+        components: {toast, EditBox},
+        mixins: [sortableMixin],
         data () {
             return {
-                moduleList: [],
+                toastData: {
+                    show: true,
+                    content: '点击查看快照预览',
+                    type: 'snapshot'
+                },
+                subtractType: {
+                    type: 'subtract',
+                    maxyesleng: 4
+                },
+                appendType: {
+                    type: 'append'
+                },
+                moduleTipsType: {},
+                moduleData: [],
+                moduleDataList: [],
+                moduleTipsData: [{
+                    title: '暂无应用',
+                    type: 'tips'
+                }]
             }
         },
         mounted () {
-            this.setModuleList();
-            this.setPageTitle('我的星主页');
+            this.moduleData = [];
+            this.moduleDataList = [
+                {imgSrc: '', type: '', title: 'angela1', tips: '375*90px'},
+                {imgSrc: '', type: '', title: 'angela2', tips: '375*90px'},
+                {imgSrc: '', type: '', title: 'angela3', tips: '375*90px'},
+                {imgSrc: '', type: '', title: 'angela4', tips: '375*90px'},
+                {imgSrc: '', type: '', title: 'angela5', tips: '375*90px'},
+                {imgSrc: '', type: '', title: 'angela6', tips: '375*90px'},
+                {imgSrc: '', type: '', title: 'angela7', tips: '375*90px'},
+                {imgSrc: '', type: '', title: 'angela8', tips: '375*90px'},
+                {imgSrc: '', type: '', title: 'angela9', tips: '375*90px'},
+            ]
         },
         computed: {},
         methods: {
-            setModuleList(){
-                this.moduleList = [
-                    {name: 'module_banner_w375h90_v100', style: '', pd: '', current: false, hover: '', spec: '375*90'},
-                    {
-                        name: 'module_banner_w375h90_v100',
-                        style: {background: '#3BD4B6'},
-                        pd: true,
-                        current: false,
-                        hover: '',
-                        spec: '375*90'
-                    },
-                    {
-                        name: 'module_banner_w375h120_v100',
-                        style: '',
-                        pd: '',
-                        current: false,
-                        hover: '',
-                        spec: '375*120'
-                    },
-                    {
-                        name: 'module_banner_w375h120_v100',
-                        style: {background: '#3BD4B6'},
-                        pd: true,
-                        current: false,
-                        hover: false,
-                        spec: '375*120'
-                    },
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150'},
-                    {
-                        name: 'module_banner_w375h150_v100',
-                        style: {background: '#3BD4B6'},
-                        pd: true,
-                        current: false,
-                        hover: false,
-                        spec: '375*150'
-                    },
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test1.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test2.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test3.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test4.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test5.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test6.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test7.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test8.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test9.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test10.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test11.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test12.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://covteam.u.qiniudn.com/test14.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://covteam.u.qiniudn.com/test15.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://covteam.u.qiniudn.com/test16.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://covteam.u.qiniudn.com/test17.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://covteam.u.qiniudn.com/test18.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://covteam.u.qiniudn.com/test19.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://covteam.u.qiniudn.com/test20.jpg'},
-                ]
-            },
-            starClick(index){
-                this.moduleList = this.moduleList.filter(function (item, idx) {
-                    item.hover = (idx === index && !item.current) ? !item.hover : false;
-                    return item;
-                });
-            },
-            editMouleFotterEvent(data){
-                let currentModule = this.moduleList.filter(function (item, idx) {
-                    if (item.hover) {
-                        return item;
-                    }
-                });
-                if (currentModule.length > 0) {
+            toastCLick(){
 
-                    if (data === '1') {
-                        this.$router.push('editmodule_showhow')
+            },
+            tplItemCLick(type, data){
+                if (type === 'item' && data.type) {
+                    if (data.type === 'more') {
+                        return false;
                     }
-                    if (data === 'confirm') {
-                        this.$router.push('edittpl_trialoredit')
+                    if (data.type === 'moveDown') {
+                        this.moveDownSortable(this.moduleData, data.data)
+                    }
+                    if (data.type === 'moveUp') {
+                        this.moveUpSortable(this.moduleData, data.data);
+                    }
+
+                    if (data.type === 'subtract') {
+                        this.subtractModuleData(this.moduleData, this.moduleDataList, data.data);
+                    }
+
+                    if (data.type === 'append') {
+                        this.appendModuleData(this.moduleData, this.moduleDataList, data.data);
+                    }
+
+                    if (data.type === 'default') {
+                    }
+                    if (data.type === 'primary') {
+                        this.moveTopSortable(this.moduleData, data.data);
                     }
                 }
+                data.callback && data.callback()
             },
-            setPageTitle(data){
-                let _this = this;
-                dd.ready(function () {
-                    dd.ui.webViewBounce.disable();
-                    dd.ui.pullToRefresh.disable();
-                    dd.biz.navigation.setTitle({
-                        title: '我的星主页',//控制标题文本，空字符串表示显示默认文本
-                        onSuccess: function (result) {
+            subtractModuleData(moduleData, moduleDataList, index){
+                let item = moduleData.splice(index, 1)[0];
+                item.defaultOpenRight = false;
+                moduleDataList.unshift(item);
+            },
+            appendModuleData(moduleData, moduleDataList, index){
+                let item = moduleDataList.splice(index, 1)[0];
+                item.defaultOpenRight = false;
+                moduleData.push(item);
+            },
+            editItemCLick(data){
+                this.tplItemCLick('item', data)
+            },
 
-                        },
-                        onFail: function (err) {
-                            alert(err)
-                        }
-                    });
-
-                    dd.biz.navigation.setRight({
-                        show: true,
-                        control: true,
-                        text: '还原布局',
-                        textColor: 'red',
-                        onSuccess: function (result) {
-                            _this.starItemEvent('starItemEvent');
-                        },
-                        onFail: function (err) {
-                        }
-                    });
-                });
-
-                dd.error(function (error) {
-                    alert('dd error: ' + JSON.stringify(err));
-                });
-            }
         }
     }
 </script>

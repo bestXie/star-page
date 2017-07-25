@@ -61,7 +61,7 @@ import {
     module_dingtalkISV_h3v3_v100,
     module_dingtalkISV_h4v2_v100,
     module_dingtalkISV_h5v1_v100
-} from '../modules/doMyself/index.js'
+} from '../modules/dingtalkISV/index.js'
 /*module_dingtalkISV end*/
 
 

@@ -1,6 +1,7 @@
 <style scoped>
     .x-swipeout-item {
         position: relative;
+        display: flex;
     }
 
     .x-swipeout-button-box {
@@ -30,40 +31,30 @@
         transition: transform 0.2s;
     }
 
-    .x-swipeout-button-primary {
-        /*background-color:#ccc;*/
-    }
-
-    .x-swipeout-button-warn {
-        /*background-color:#ccc;*/
-    }
-
-    .x-swipeout-button-default {
-        /*background-color: #ccc;*/
-    }
 </style>
 <template>
-    <div class="x-swipeout-item"
-         @touchstart="start"
-         @mousedown="start"
-         @touchmove="move"
-         @mousemove="move"
-         @touchend="end"
-         @mouseup="end"
-         @touchcancel="end">
+    <div class="x-swipeout-item">
         <div class="x-swipeout-button-box x-swipeout-button-box-left" :style="leftButtonBoxStyle"
              v-show="distX > 0">
             <slot name="left-menu"></slot>
         </div>
-        <div class="x-swipeout-button-box" :style="rightButtonBoxStyle"  v-show="distX < 0">
-            <slot name="right-menu" ></slot>
+        <div class="x-swipeout-button-box" :style="rightButtonBoxStyle" v-show="distX < 0">
+            <slot name="right-menu"></slot>
         </div>
-        <div class="x-swipeout-content" :style="styles" @mousedown="onContentClick" @touchstart="onContentClick"
-             ref="content">
+        <slot name="contentleft"></slot>
+        <div class="x-swipeout-content" :style="styles"
+             @touchstart="start"
+             @mousedown="start"
+             @touchmove="move"
+             @mousemove="move"
+             @touchend="end"
+             @mouseup="end"
+             @touchcancel="end" ref="content">
             <slot name="content"></slot>
         </div>
     </div>
 </template>
+<!--@mousedown="onContentClick" @touchstart="onContentClick"-->
 
 <script>
     export default {
@@ -89,8 +80,8 @@
             },
             withData: {default: {}},
             propData: {default: {}},
-            width:'',
-            defaultOpenRight:Boolean
+            width: '',
+            defaultOpenRight: Boolean
         },
         mounted () {
             this.$nextTick(() => {
@@ -104,7 +95,7 @@
                     this.caculateMenuWidth('right')
                 }
 
-                if(this.defaultOpenRight){
+                if (this.defaultOpenRight) {
                     this.openRight();
                 }
             })
@@ -112,9 +103,9 @@
         },
         methods: {
             caculateMenuWidth (direction) {
-               if(!this.$slots[`${direction}-menu`]){
-                   return false
-               }
+                if (!this.$slots[`${direction}-menu`]) {
+                    return false
+                }
 
                 const list = this.$slots[`${direction}-menu`][0].children.filter(one => one.tag)
                 let width = 0;
@@ -141,6 +132,9 @@
                 }
             },
             start (ev) {
+                if (this.styles.transform.indexOf('(0px, 0, 0)') === -1) {
+                    this._setClose(200);
+                }
                 this.caculateMenuWidth('right');
                 if (this.disabled || this.isOpen || ev.target.nodeName.toLowerCase() === 'button') {
                     return
@@ -201,10 +195,11 @@
                 }
 
                 if (this.valid === true) {
-                    ev.stopPropagation();
                     if (Math.abs(this.distX) <= this.menuWidth) {
+                        ev.stopPropagation();
                         this.setOffset(this.distX, false)
                     } else {
+
                         const extra = (Math.abs(this.distX) - this.menuWidth) * 0.5;
                         const offset = (this.menuWidth + extra) * (this.distX < 0 ? -1 : 1);
 
@@ -393,7 +388,7 @@
             withData (newVal, oldVal) {
                 if (newVal.defaultOpenRight) {
                     this.openRight();
-                }else{
+                } else {
                     this.setOffset(0, true, true)
                 }
             }

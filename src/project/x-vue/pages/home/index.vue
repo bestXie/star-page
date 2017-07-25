@@ -104,6 +104,7 @@
                 'editTpl_trialoredit',
                 'editModule_aaddModule',
                 'editModule_showHow',
+                'editGlobal_style',
                 'editGlobal_color',
 
                 'editModule_banner',

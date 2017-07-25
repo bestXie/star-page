@@ -1,22 +1,4 @@
 <style scoped>
-    .edit-bar-wrapper {
-        height: 1.1rem;
-        padding: .6rem .3rem 0;
-        width: 100%;
-        box-sizing: border-box;
-        font-size: .28rem;
-        color: #666;
-    }
-
-    .edit-bar-left {
-        float: left;
-    }
-
-    .edit-bar-right {
-        float: right;
-        color: #9b9b9b;
-    }
-
     .swipeout-item-button {
         width: 1.48rem;
         color: #fff;
@@ -25,7 +7,7 @@
 
     .swipeout-item-content {
         height:1.4rem;
-        padding: .2rem .3rem;
+        padding-left: .3rem;
         overflow: hidden;
         background: #fff;
         box-sizing: border-box;
@@ -44,7 +26,7 @@
             <swipeout>
                 <swipeout-item transition-mode="follow" v-for="item,index in propData" :key="index"
                                :propData="index" :withData="item" :defaultOpenRight="item.defaultOpenRight" @starClick="starClick">
-                    <div slot="content" class="swipeout-item-content x-border-1px-bottom">
+                    <div slot="content" class="swipeout-item-content">
                         <edit-item :propData="item"></edit-item>
                     </div>
                     <div slot="right-menu" v-if="item.type!='add'">
@@ -77,7 +59,7 @@
         },
         props: {
             propData: {
-                default: {barData: {}}
+                default:[]
             }
         },
         computed: {},

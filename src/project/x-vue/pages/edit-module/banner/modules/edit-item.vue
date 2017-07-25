@@ -40,7 +40,7 @@
 </style>
 
 <template>
-    <div class="swipeout-item-box">
+    <div class="swipeout-item-box x-border-1px-bottom">
         <div class="swipeout-item-content-l" :class="{'swipeout-item-add':propData.type=='add'}"></div>
         <div class="swipeout-item-content-c">
             <div class="x-title-box">

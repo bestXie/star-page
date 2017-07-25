@@ -1,213 +1,188 @@
 <style scoped>
-    .wrapper {
-        display: flex;
+    .addCmpanyApp-wrapper {
         width: 100%;
-        padding-bottom: 1.3rem;
-        height: 100%;
+        background: #fff;
         box-sizing: border-box;
+        padding-left: .2rem;
     }
 
-    .banner-wrapper {
+    .x-border-1px-bottom:last-child {
+        border-bottom: 0;
+    }
+
+    .addCmpanyApp-item-box {
         width: 100%;
-        height: 100%;
         box-sizing: border-box;
-        position: relative;
+        display: flex;
+        flex-flow: row;
     }
 
-    .banner-item-wrapper {
-        width: 100%;
-        position: relative;
+    .addCmpanyApp-item-box .input-label {
+        height:.88rem;
+        font-size: .34rem;
+        color: #4a4a4a;
+        line-height: .88rem;
     }
 
-    .banner-box {
-        width: 100%;
-        height: 100%;
+    .addCmpanyApp-item-box .addCmpanyApp-item-l {
+        width: 2.1rem;
     }
 
-    .select-warpper {
-        width: 100%;
-    }
-
-    .title-box {
-        padding-top: .6rem;
-        text-align: center;
-        font-size: .28rem;
-        color: #666;
-        padding-bottom: .2rem;
-    }
-
-    .bg-3BD4B6 {
-        background: #3BD4B6;
-    }
-
-    .select-warpper {
-        position: relative;
-    }
-
-    .select-item-current {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        border: 4px solid #fe3824;
-        top: 0;
-        left: 0;
-        bottom: 0;
+    .addCmpanyApp-item-box .addCmpanyApp-item-r {
+        flex: 1;
         box-sizing: border-box;
-        right: 0;
+        padding-right: .3rem;
         display: flex;
-        justify-content: flex-end;
-        align-items: flex-start;
-    }
-
-    .select-item-current-tips {
-        width: 1.96rem;
-        height: .46rem;
-        background: #fe3824;
-        font-size: .24rem;
-        color: #fff;
-        display: flex;
+        -ms-flex-align: center;
         align-items: center;
-        justify-content: center;
-
     }
 
-    .select-item-hover {
+    .addCmpanyApp-item-box .addCmpanyApp-item-r .input {
+        flex: 1;
         width: 100%;
-        height: 100%;
-        position: absolute;
-        border: .04rem solid #0076FF;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        box-sizing: border-box;
+        font-size: .34rem;
+        color: #030303;
     }
 
+    .addCmpanyApp-img {
+        height: 1.8rem;
+        box-sizing: border-box;
+        display: flex;
+        flex-flow: row;
+        padding-right: .3rem;
+    }
 
+    .addCmpanyApp-img .addCmpanyApp-item-l {
+        flex: 1;
+        box-sizing: border-box;
+        padding-right: .3rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .addCmpanyApp-img .addCmpanyApp-item-r {
+        width: 1.2rem;
+        display: flex;
+        box-sizing: border-box;
+        -ms-flex-align: center;
+        align-items: center;
+
+    }
+
+    .addCmpanyApp-img .addCmpanyApp-img-input {
+        width: 1.2rem;
+        height: 1.2rem;
+        background: #ccc;
+        border-radius:.2rem;
+    }
+
+    .addCmpanyApp-img .addCmpanyApp-img-title {
+        padding-top: .5rem;
+        font-size: .34rem;
+        color: #030303;
+        width: 100%;
+    }
+
+    .addCmpanyApp-img .addCmpanyApp-img-tips {
+        font-size:.24rem;
+        color: #8f8f8f;
+        width: 100%;
+    }
+
+    .btn-box {
+        padding-top: .3rem;
+    }
 </style>
 
 <template>
     <div class="wrapper">
-        <section class="banner-wrapper">
-            <scroller>
-                <div class="banner-item-wrapper" v-for="item,index in moduleList" :key="index"
-                     @click="starClick(index)">
-                    <div class="title-box">
-                        <p>【模块】 banner {{item.spec}} {{item.pd ? '内边距5px' : ''}}</p>
-                    </div>
-                    <div class="select-warpper">
+        <div class="x-h-common"></div>
+        <div class="addCmpanyApp-wrapper">
 
-                        <component v-bind:is="item.name" :propData="item"></component>
-                        <div class="select-item-current" v-if="item.current">
-                            <div class="select-item-current-tips">当前使用</div>
-                        </div>
-                        <div class="select-item-hover" v-if="item.hover"></div>
-                    </div>
+            <div class="addCmpanyApp-item-box x-border-1px-bottom">
+                <div class="addCmpanyApp-item-l">
+                    <div class="input-label">应用名称</div>
                 </div>
-            </scroller>
-        </section>
-        <edit-moule-fotter @starClick="editMouleFotterEvent"></edit-moule-fotter>
+                <div class="addCmpanyApp-item-r">
+                    <input class="input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"
+                           type="text" placeholder="请输入名称（10个字）" maxlength="10">
+                </div>
+            </div>
+            <div class="addCmpanyApp-item-box x-border-1px-bottom">
+                <div class="addCmpanyApp-item-l">
+                    <div class="input-label">链接地址</div>
+                </div>
+                <div class="addCmpanyApp-item-r">
+                    <input class="input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"
+                           type="text" placeholder="请输入">
+                </div>
+            </div>
+
+        </div>
+        <div class="h-30"></div>
+        <div class="addCmpanyApp-wrapper">
+            <div class=" addCmpanyApp-img x-border-1px-bottom">
+                <div class="addCmpanyApp-item-l ">
+                    <div class="addCmpanyApp-img-title">应用图标</div>
+                    <div class="addCmpanyApp-img-tips">尺寸500px*500px</div>
+                </div>
+                <div class="addCmpanyApp-item-r">
+                    <div class="addCmpanyApp-img-input"></div>
+                </div>
+            </div>
+
+        </div>
+        <div class="btn-box">
+            <x-button-tab propData="" :type="btnPropData.type">
+                {{btnPropData.text}}
+            </x-button-tab>
+        </div>
+        <div class="btn-box">
+            <x-button-tab propData="" type="submit" @starClick="deleteCmpanyApp">
+                删除测试
+            </x-button-tab>
+        </div>
     </div>
 </template>
 
 <script>
-
-    import {getStore, setStore} from '../../../util/index'
-    import EditMouleFotter from '../../../components/editMouleFotter/index.vue'
+    import {XButtonTab} from '../../../plugins/button-tab/index.js'
     export default {
-        name: 'page_banner_index',
-        components: {EditMouleFotter},
+        components: {
+            XButtonTab
+        },
+        name: 'myCmpanyApp',
         data () {
             return {
-                moduleList: [],
+                tabList: [],
+                templet: {
+                    list: []
+                },
+                btnPropData: {
+                    type: 'disabled',
+                    text: '添加'
+                },
             }
         },
         mounted () {
-            this.setModuleList();
-            this.setPageTitle('我的星主页');
+            this.setPageTitle('我的模板');
+            this.tabList = [
+                {name: '模板', id: '1', current: true},
+                {name: '最近', id: '2'}
+            ];
+            this.templet.list = [
+                {}
+            ]
         },
         computed: {},
         methods: {
-            setModuleList(){
-                this.moduleList = [
-                    {name: 'module_banner_w375h90_v100', style: '', pd: '', current: false, hover: '', spec: '375*90'},
-                    {
-                        name: 'module_banner_w375h90_v100',
-                        style: {background: '#3BD4B6'},
-                        pd: true,
-                        current: false,
-                        hover: '',
-                        spec: '375*90'
-                    },
-                    {
-                        name: 'module_banner_w375h120_v100',
-                        style: '',
-                        pd: '',
-                        current: false,
-                        hover: '',
-                        spec: '375*120'
-                    },
-                    {
-                        name: 'module_banner_w375h120_v100',
-                        style: {background: '#3BD4B6'},
-                        pd: true,
-                        current: false,
-                        hover: false,
-                        spec: '375*120'
-                    },
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150'},
-                    {
-                        name: 'module_banner_w375h150_v100',
-                        style: {background: '#3BD4B6'},
-                        pd: true,
-                        current: false,
-                        hover: false,
-                        spec: '375*150'
-                    },
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test1.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test2.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test3.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test4.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test5.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test6.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test7.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test8.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test9.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test10.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test11.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test12.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://covteam.u.qiniudn.com/test14.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://covteam.u.qiniudn.com/test15.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://covteam.u.qiniudn.com/test16.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://covteam.u.qiniudn.com/test17.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://covteam.u.qiniudn.com/test18.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://covteam.u.qiniudn.com/test19.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://covteam.u.qiniudn.com/test20.jpg'},
-                ]
-            },
-            starClick(index){
-                this.moduleList = this.moduleList.filter(function (item, idx) {
-                    item.hover = (idx === index && !item.current) ? !item.hover : false;
+            tabTtemEvent(index){
+                this.tabListr = this.tabList.filter(function (item, idx) {
+                    item.current = (idx === index) ? true : false;
                     return item;
                 });
             },
-            editMouleFotterEvent(data){
-                let currentModule = this.moduleList.filter(function (item, idx) {
-                    if (item.hover) {
-                        return item;
-                    }
-                });
-                if (currentModule.length > 0) {
-
-                    if (data === '1') {
-                        this.$router.push('editmodule_showhow')
-                    }
-                    if (data === 'confirm') {
-                        this.$router.push('edittpl_trialoredit')
-                    }
-                }
-            },
             setPageTitle(data){
-                let _this = this;
                 dd.ready(function () {
                     dd.ui.webViewBounce.disable();
                     dd.ui.pullToRefresh.disable();
@@ -222,20 +197,34 @@
                     });
 
                     dd.biz.navigation.setRight({
-                        show: true,
-                        control: true,
-                        text: '还原布局',
-                        textColor: 'red',
-                        onSuccess: function (result) {
-                            _this.starItemEvent('starItemEvent');
-                        },
-                        onFail: function (err) {
-                        }
+                        show: false,
                     });
-                });
 
+
+                });
                 dd.error(function (error) {
                     alert('dd error: ' + JSON.stringify(err));
+                });
+            },
+            deleteCmpanyApp(){
+                console.log(1111);
+                let name = '星任务';
+                let _this = this;
+                this.$store.commit('confirm', {
+                    data: {
+                        title: '确定删除应用“' + name + '”？',
+                        list: [{id: 1, text: '删除'}]
+                    },
+                    onConfirm(data, cancel){
+                        if (data.id === 1) {
+                            _this.$store.commit('toast', {content: '已成功删除了“' + name + '”'});
+                            _this.$router.go(-1)
+                        }
+                        cancel();
+                    },
+                    onCancel(cancel) {
+                        cancel();
+                    }
                 });
             }
         }

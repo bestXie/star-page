@@ -41,6 +41,7 @@
 
     //公用下边框
     .x-border-1px-bottom {
+        position: relative;
         border-bottom: 1px #c8c8c8 solid;
     }
 
@@ -151,6 +152,10 @@
 
     .bar-container-wrapper .x-border-1px-bottom:last-child {
         border-bottom: 0;
+    }
+
+    .edit-item-wrapper .x-swipeout-item:last-child .x-border-1px-bottom {
+        /*border-bottom: 0;*/
     }
 
     .bar-container-item-box {
@@ -266,9 +271,11 @@
         box-sizing: border-box;
         background-color: #DFDFDF;
         -webkit-transition: background-color 0.1s, border 0.1s;
+        -moz-transition: background-color 0.1s, border 0.1s;
         transition: background-color 0.1s, border 0.1s;
-        -webkit-appearance: none;
-        appearance: none;
+        appearance:none;
+        -moz-appearance:none; /* Firefox */
+        -webkit-appearance:none; /* Safari 和 Chrome */
     }
 
     .x-switch-item-r {

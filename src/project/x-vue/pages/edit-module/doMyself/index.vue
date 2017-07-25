@@ -7,14 +7,14 @@
         box-sizing: border-box;
     }
 
-    .banner-wrapper {
+    .doMyself-wrapper {
         width: 100%;
         height: 100%;
         box-sizing: border-box;
         position: relative;
     }
 
-    .banner-item-wrapper {
+    .doMyself-item-wrapper {
         width: 100%;
         position: relative;
     }
@@ -87,12 +87,12 @@
 
 <template>
     <div class="wrapper">
-        <section class="banner-wrapper">
+        <section class="doMyself-wrapper">
             <scroller>
-                <div class="banner-item-wrapper" v-for="item,index in moduleList" :key="index"
+                <div class="doMyself-item-wrapper" v-for="item,index in moduleList" :key="index"
                      @click="starClick(index)">
                     <div class="title-box">
-                        <p>【模块】 banner {{item.spec}} {{item.pd ? '内边距5px' : ''}}</p>
+                        <p>【模块】 自助应用 {{item.spec}} {{item.bg}}</p>
                     </div>
                     <div class="select-warpper">
 
@@ -129,59 +129,25 @@
         methods: {
             setModuleList(){
                 this.moduleList = [
-                   {name: 'module_banner_w375h90_v100', style: '', pd: '', current: false, hover: '', spec: '375*90'},
+                    {name: 'module_doMyself_h4v1_v100', style: '', bg: '黑色背景', current: false, hover: '', spec: '4格'},
                     {
-                        name: 'module_banner_w375h90_v100',
-                        style: {background: '#3BD4B6'},
+                        name: 'module_doMyself_h5v1_v100',
+                        style: {background: ''},
                         pd: true,
+                        bg: '黄色背景',
                         current: false,
                         hover: '',
-                        spec: '375*90'
+                        spec: '5格'
                     },
                     {
-                        name: 'module_banner_w375h120_v100',
-                        style: '',
-                        pd: '',
-                        current: false,
+                        name: 'module_doMyself_h5v1_v100',
+                        style: {background: ''},
+                        pd: true,
+                        bg: '黄色背景',
                         hover: '',
-                        spec: '375*120'
+                        spec: '5格',
+                        current: true
                     },
-                    {
-                        name: 'module_banner_w375h120_v100',
-                        style: {background: '#3BD4B6'},
-                        pd: true,
-                        current: false,
-                        hover: false,
-                        spec: '375*120'
-                    },
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150'},
-                    {
-                        name: 'module_banner_w375h150_v100',
-                        style: {background: '#3BD4B6'},
-                        pd: true,
-                        current: false,
-                        hover: false,
-                        spec: '375*150'
-                    },
-                  {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test1.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test2.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test3.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test4.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test5.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test6.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test7.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test8.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test9.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test10.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test11.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test12.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://covteam.u.qiniudn.com/test14.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://covteam.u.qiniudn.com/test15.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://covteam.u.qiniudn.com/test16.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://covteam.u.qiniudn.com/test17.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://covteam.u.qiniudn.com/test18.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://covteam.u.qiniudn.com/test19.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://covteam.u.qiniudn.com/test20.jpg'},
                 ]
             },
             starClick(index){

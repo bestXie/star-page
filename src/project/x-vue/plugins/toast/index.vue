@@ -1,7 +1,7 @@
 <template>
-    <transition :name="'vux-slide-from-top'">
-        <div class="weui-toast" v-show="propData.show" :class="{ snapshotStyle: propData.type}" @click="starClick">
-            <p class="weui-toast-content"  >{{propData.content || ''}}</p>
+    <transition :name="'x-slide-from-top'">
+        <div class="x-toast" v-show="propData.show" :class="{ snapshotStyle: propData.type}" @click="starClick">
+            <p class="x-toast-content"  >{{propData.content || ''}}</p>
         </div>
     </transition>
 </template>
@@ -54,7 +54,7 @@
 </script>
 
 <style lang="less">
-    .weui-toast {
+    .x-toast {
         position: fixed;
         z-index: 1111;
         width: 100%;
@@ -70,32 +70,32 @@
         align-items: center;
     }
 
-    .weui-toast-content {
+    .x-toast-content {
         padding: 0 .15rem;
         box-sizing: border-box;
     }
     .snapshotStyle{
         color: #fff;
-        background: rgba(151,22,155,.7);
+        background: rgba(151,22,255,.7);
         font-size: .22rem;
     }
 
-    .vux-slide-from-top-enter, .vux-slide-from-top-leave-active {
+    .x-slide-from-top-enter, .x-slide-from-top-leave-active {
         opacity: 0;
         transform: translateY(-100%) !important;
     }
 
-    .vux-slide-from-top-enter-active,
-    .vux-slide-from-top-leave-active {
+    .x-slide-from-top-enter-active,
+    .x-slide-from-top-leave-active {
         transition: all 400ms cubic-bezier(.36, .66, .04, 1);
     }
 
-    .weui-toast .weui-toast-content {
+    .x-toast .x-toast-content {
         min-height: 0;
         margin: 0;
     }
 
-    .weui-toast-content {
+    .x-toast-content {
         font-size: .22rem;
     }
 
