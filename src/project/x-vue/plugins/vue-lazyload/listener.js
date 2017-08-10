@@ -1,7 +1,7 @@
 import { loadImageAsync, ObjectKeys } from './util'
 
 let imageCache = {}
-
+let loadingError ='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=='
 export default class ReactiveListener {
     constructor ({ el, src, error, loading, bindType, $parent, options, elRenderer }) {
         this.el = el
@@ -173,7 +173,10 @@ export default class ReactiveListener {
             time = (this.performanceData.loadEnd - this.performanceData.loadStart) / 1000
         }
 
-        if (this.state.error) state = 'error'
+        if (this.state.error){
+            state = 'error';
+            // this.src=loadingError;
+        }
 
         return {
             src: this.src,

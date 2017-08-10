@@ -15,7 +15,7 @@ let webpackConfig = merge(baseWebpackConfig, {
     module: {
         rules: utils.styleLoaders({
             sourceMap: config.build.productionSourceMap,
-            extract: true
+            extract: false
         })
     },
     devtool: config.build.productionSourceMap ? '#source-map' : false,
@@ -35,9 +35,11 @@ let webpackConfig = merge(baseWebpackConfig, {
             }
         }),
         // extract css into its own file
-        new ExtractTextPlugin({
+        /*打包css公共模块*/
+        /*new ExtractTextPlugin({
             filename: utils.assetsPath('css/[name].css')
-        }),
+        }),*/
+        /*打包css公共模块*/
         // generate dist index.html with correct asset hash for caching.
         // you can customize output by editing /index.html
         // see https://github.com/ampedandwired/html-webpack-plugin

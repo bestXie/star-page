@@ -59,8 +59,6 @@
                     </div>
                     <div slot="right-menu" v-if="item.current!='1'">
                         <swipeout-button class="swipeout-item-button" :width="width" text="重命名"></swipeout-button>
-                        <swipeout-button class="swipeout-item-button" :width="width" v-if="item.star!='1'" text="收藏"
-                                         type="primary"></swipeout-button>
                         <swipeout-button class="swipeout-item-button" :width="width" text="删除"
                                          type="delete"></swipeout-button>
                     </div>
@@ -73,6 +71,7 @@
 <script>
     import HistoryItem from './history-item.vue'
     import {Swipeout, SwipeoutItem, SwipeoutButton} from '../../../../plugins/swipeout/';
+    import {getBodyFontSize} from '../../../../util/index.js'
     export default {
         components: {
             Swipeout,
@@ -96,22 +95,13 @@
         },
         computed: {},
         mounted: function () {
-            this.width = document.documentElement.style.fontSize.match(/(\d+(?:\.\d+)?)/)[0] * 1.48;
-            if (this.$refs.swipeoutItemButton) {
-
-                console.log(document.documentElement.style.fontSize.match(/(\d+(?:\.\d+)?)/)[0] * 1.48);
-                console.log(document.documentElement.style.fontSize)
-//                console.log(this.$refs.swipeoutItemButton)
-//                console.log(this.$refs.swipeoutItemButton[0])
-//                console.log(this.$refs.swipeoutItemButton[0].clientWidth)
-//                console.log(this.$refs.swipeoutItemButton.$el.clientWidth)
-            }
+            this.width = getBodyFontSize() * 1.48;
         },
         methods: {
             barClick(data){
                 this.$emit('starClick', {
                     data: data,
-                    type: 'more'
+                    type: 'link'
                 });
             },
             starClick(data){

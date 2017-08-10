@@ -2,7 +2,7 @@
     .wrapper {
         display: flex;
         width: 100%;
-        padding-bottom: 1.3rem;
+        padding-bottom: 1rem;
         height: 100%;
         box-sizing: border-box;
     }
@@ -48,7 +48,6 @@
         width: 100%;
         height: 100%;
         position: absolute;
-        border: 4px solid #fe3824;
         top: 0;
         left: 0;
         bottom: 0;
@@ -165,25 +164,25 @@
                         hover: false,
                         spec: '375*150'
                     },
-                  {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test1.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test2.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test3.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test4.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test5.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test6.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test7.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test8.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test9.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test10.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test11.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test12.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://covteam.u.qiniudn.com/test14.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://covteam.u.qiniudn.com/test15.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://covteam.u.qiniudn.com/test16.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://covteam.u.qiniudn.com/test17.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://covteam.u.qiniudn.com/test18.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://covteam.u.qiniudn.com/test19.jpg'},
-                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: true, hover: '', spec: '375*150',imgSrc:'http://covteam.u.qiniudn.com/test20.jpg'},
+                  {name: 'module_banner_w375h150_v100', style: '', pd: '', current: false, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test1.jpg'},
+                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: false, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test2.jpg'},
+                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: false, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test3.jpg'},
+                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: false, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test4.jpg'},
+                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: false, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test5.jpg'},
+                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: false, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test6.jpg'},
+                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: false, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test7.jpg'},
+                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: false, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test8.jpg'},
+                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: false, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test9.jpg'},
+                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: false, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test10.jpg'},
+                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: false, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test11.jpg'},
+                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: false, hover: '', spec: '375*150',imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test12.jpg'},
+                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: false, hover: '', spec: '375*150',imgSrc:'http://covteam.u.qiniudn.com/test14.jpg'},
+                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: false, hover: '', spec: '375*150',imgSrc:'http://covteam.u.qiniudn.com/test15.jpg'},
+                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: false, hover: '', spec: '375*150',imgSrc:'http://covteam.u.qiniudn.com/test16.jpg'},
+                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: false, hover: '', spec: '375*150',imgSrc:'http://covteam.u.qiniudn.com/test17.jpg'},
+                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: false, hover: '', spec: '375*150',imgSrc:'http://covteam.u.qiniudn.com/test18.jpg'},
+                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: false, hover: '', spec: '375*150',imgSrc:'http://covteam.u.qiniudn.com/test19.jpg'},
+                    {name: 'module_banner_w375h150_v100', style: '', pd: '', current: false, hover: '', spec: '375*150',imgSrc:'http://covteam.u.qiniudn.com/test20.jpg'},
                 ]
             },
             starClick(index){

@@ -3,7 +3,8 @@
  */
 
 export default {
-    loadingShow: state => state.loadingShow,
+    loading: state => state.loading,
     confirm: state => state.confirm,
-    toast:state => state.toast
+    toast:state => state.toast,
+    photoEditorEd:state => state.photoEditorEd,
 }

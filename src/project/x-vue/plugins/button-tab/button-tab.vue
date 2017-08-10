@@ -1,6 +1,8 @@
 <template>
-    <div class="x-button-group">
-        <hover-style class="x-button-item" :class="{'x-disabled': type === 'disabled', 'x-delete': type === 'delete', 'x-default': type === 'default', 'x-submit': type === 'submit'}"  @starClick="starClick">
+    <div class="x-button-group" :class="{'padding-3': !nopadding}">
+        <hover-style class="x-button-item"
+                     :class="{'radius-8':!noradius,'x-disabled': type === 'disabled', 'x-delete': type === 'delete', 'x-default': type === 'default', 'x-forward': type === 'forward', 'x-submit': type === 'submit'}"
+                     :style=" {'border':border}" @starClick="starClick">
             <p class="x-button-text">
                 <slot></slot>
             </p>
@@ -14,7 +16,10 @@
         name: 'x-button-tab',
         props: {
             propData: {default: {}},
-            type: String
+            type: String,
+            border: String,
+            nopadding: Boolean,
+            noradius:Boolean
         },
         methods: {
             starClick(){
@@ -31,37 +36,53 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 0 .3rem;
+
         box-sizing: border-box;
+    }
+
+    .padding-3 {
+        padding: 0 .3rem;
+    }
+    .radius-8{
+        border-radius: .08rem;
+
     }
 
     .x-button-item {
         width: 100%;
         height: 1rem;
-        border: solid 1px #c8c8c8;
         display: flex;
         justify-content: center;
         align-items: center;
-        border-radius: .08rem;
     }
 
-    .x-button-item.x-disabled{
+    .x-button-item.x-disabled {
         background: #dfdfdf;
     }
 
-    .x-button-item.x-disabled .x-button-text{
-        color: #fff;
-    }
-    .x-button-item.x-submit{
-        background: #0076ff;
-    }
-    .x-button-item.x-submit .x-button-text{
+    .x-button-item.x-disabled .x-button-text {
         color: #fff;
     }
 
+    .x-button-item.x-submit {
+        background: #0076ff;
+    }
+
+    .x-button-item.x-submit .x-button-text {
+        color: #fff;
+    }
+
+    .x-button-item.x-forward{
+        background: #F8E71D;
+    }
+    .x-button-item.x-forward .x-button-text {
+        color: #4a4a4a;
+    }
+
     .x-button-text {
-        font-size:.34rem;
+        font-size: .34rem;
         color: #0076ff;
         text-align: center;
     }
+
 </style>

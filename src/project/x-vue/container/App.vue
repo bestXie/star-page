@@ -1,54 +1,56 @@
 <template>
     <div class="app-wrapper">
-        <loading :show="loadingShow"></loading>
+        <xloading :loading="loading"></xloading>
         <router-view style="flex:1;"></router-view>
     </div>
 </template>
 <script>
-    import loading from '../plugins/loading/index.vue';
+    import xloading from '../plugins/loading/index.vue';
     import {mapGetters} from 'vuex';
     export default {
         name: 'app',
         components: {
-            loading
+            xloading
         },
         mounted () {
+           /* let a = 1;
+            let _this = this;
+            setInterval(function () {
+                a++;
+                a=a>100?0:a;
+                _this.$store.commit('updateLoadingStatus', {state: a+'%', show: true, tips: '上传中 请稍后'});
+            }, 100)*/
         },
         computed: {
             ...mapGetters([
-                'loadingShow',
+                'loading',
             ])
         }
     }
 </script>
 
 <style lang="less">
-    @import '../../../lib/styleTheme/const/reset.less';
-    @import '../theme/style/style.less';
 
-    /*common start*/
-    .wrapper {
-        width: 100%;
-        height: 100%;
+    @import '../../../lib/styleTheme/const/reset.less';
+
+    img[ lazy = loading ] {
+        background: #f2f2f2 url("../images/svg/loading-spin.svg") center no-repeat;
+        background-size: auto 33%;
     }
-    //star-flex
-    .star-flex {
-        display: -webkit-flex;
-        display: flex;
+    .imgerror-w{
+        background: #f2f2f2 url("../images/common/none_image_defult.png") center no-repeat;
+        background-size: auto 100%;
     }
-    //页面背景定义
-    .app-wrapper {
-        background-color: #F2F2F2;
-        width: 100%;
-        height: 100%;
-        max-width: 750px;
-        margin: 0 auto;
+    .imgerror-h{
+        background: #f2f2f2 url("../images/common/none_image_defult.png") center no-repeat;
+        background-size:  100% auto;
     }
-    //定义内容高度
-    .app-container {
-        width: 100%;
-        height: 100%;
+    img[ lazy = error ] {
+        background: #f2f2f2 url("../images/common/none_image_defult.png") center no-repeat;
+        background-size: auto 100%;
     }
-    /*common end*/
+
+    img[ lazy = loaded ] {
+    }
 
 </style>

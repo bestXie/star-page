@@ -1,6 +1,6 @@
 <template>
     <transition name="modal">
-        <div class="v-mask" v-show="show" @click="maskClick" :style="{background:stylebg }">
+        <div class="v-mask" v-show="show" @click="starClick" :style="{background:stylebg,position :position}">
             <slot></slot>
         </div>
     </transition>
@@ -12,33 +12,33 @@
             show: {
                 type: true
             },
-            stylebg: ''
+            stylebg: '',
+            position: ''
         },
         mounted: function () {
         },
         methods: {
-            maskClick(){
-                this.$emit('maskClick', 'maskClick')
+            starClick(){
+                this.$emit('starClick', 'starClick')
             }
         },
     };
 </script>
 
 <style lang="less" scoped>
-    @import '../../theme/style/weui_mask.less';
-
     .v-mask {
-        position: absolute;
+        position: fixed;
         z-index: 1000;
         top: 0;
         right: 0;
         left: 0;
         bottom: 0;
-        background: rgba(255, 255, 255, 0.4);
+        background: rgba(0, 0, 0, 0.3);
         display: table;
         width: 100%;
         height: 100%;
     }
+
     .modal-enter .modal-container,
     .modal-leave-active .modal-container {
         -webkit-transform: scale(1.1);

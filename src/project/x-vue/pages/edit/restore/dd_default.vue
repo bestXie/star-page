@@ -54,7 +54,7 @@
                 <p class="btn-tips">点击以下按钮，还原钉钉默认布局</p>
             </div>
             <div class="btn-box">
-                <x-button-tab propData="" @starClick="btnEvent">
+                <x-button-tab propData="" @starClick="btnEvent" :border="'solid 1px #c8c8c8'">
                     使用钉钉默认布局
                 </x-button-tab>
             </div>
@@ -97,12 +97,11 @@
             },
             btnEvent(){
                 let _this = this;
-
                 this.$store.commit('confirm', {
                     data: {
                         title: '确认还原钉钉默认首页？',
                     },
-                    filter: true,
+
                     onConfirm(data, cancel){
                         if (data.id === 1) {
                             console.log(data.id);

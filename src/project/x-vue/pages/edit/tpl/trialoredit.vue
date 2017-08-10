@@ -49,6 +49,8 @@
     import toast from '../../../plugins/toast/index.vue'
     import modifyBar from '../../../components/modifyBar/index.vue'
     import {sortableMixin} from '../../../mixins/eid_sortableMixin'
+    import html2canvas from '../../../plugins/html2canvas/html2canvas.js'
+
     export default {
         components: {editModuleBar, toast, modifyBar},
         mixins: [sortableMixin],
@@ -66,22 +68,23 @@
                     content: '点击查看快照预览',
                     type: 'snapshot'
                 },
-                moduleList: []
+                moduleList: [],
+                imgclcd:''
             }
         },
         mounted () {
             this.setPageTitle('我的模板');
             this.editFotterList = this.editFotterList.concat([
-                {name: 'previous', text: '上一步'},
-                {name: 'next', text: '下一步'},
+              /*  {name: 'previous', text: '上一步'},
+                {name: 'next', text: '下一步'},*/
                 {name: 'addModularFotter', text: '底部添加模块'},
                 {name: 'global', text: '全局设置'}
             ]);
 
-            this.editFotterList = this.editFotterList.filter(function (item, idx) {
+           /* this.editFotterList = this.editFotterList.filter(function (item, idx) {
                 item.hover = (idx === 0) ? !item.hover : false;
                 return item;
-            });
+            });*/
 
             this.moduleList = [
                 {
@@ -91,7 +94,8 @@
                     pd: '',
                     current: false,
                     hover: '',
-                    spec: '375*90'
+                    spec: '375*90',
+                    imgSrc:'http://hilongjw.github.io/vue-lazyload/dist/test11.jpg'
                 },
                 {
                     name: 'module_banner_w375h90_v100',
@@ -142,16 +146,26 @@
                 console.log(123)
             },
             fotterItemEvent(data){
+                let _this=this;
                 if (data === 'addModular' || data === 'addModularFotter') {
                     this.$router.push('editModule_aaddModule')
                 } else if (data === 'global') {
-                    this.confirmSave()
+//                    this.confirmSave()
+                    this.$router.push('editGlobal_style')
+                } else if (data === 'next') {
+
+                    console.log( this.$refs.tpl_scroller.$el);
+                    this.$refs.tpl_scroller.scrollTo(0, 0, false);
+                    html2canvas(this.$refs.tpl_scroller.$el,{useCORS:true}).then(function (canvas) {
+//                        document.body.appendChild(canvas);
+                        let dataUrl = canvas.toDataURL();
+                        console.log(dataUrl);
+                    });
                 }
             },
             confirmSave(){
                 let _this = this;
                 this.$store.commit('confirm', {
-
                     data: {
                         title: '是否保存修改？',
                         boxType: 'confirm-black',
@@ -188,8 +202,6 @@
                     dd.biz.navigation.setRight({
                         show: false,
                     });
-
-
                 });
                 dd.error(function (error) {
                     alert('dd error: ' + JSON.stringify(err));
@@ -216,20 +228,17 @@
                     }
                     return item;
                 });
-                this.$set(this.editFotterList, 2, ifModifyShowFlag ? {
+                this.$set(this.editFotterList, 0, ifModifyShowFlag ? {
                     name: 'addModular',
                     text: '下方添加模块'
                 } : {name: 'addModularFotter', text: '底部添加模块'});
             },
 
             moveUpModifyBar(index){
-
-
-
                 index = this.moveModifyIndex;
-                let _this=this;
+                let _this = this;
 
-                this.moveUpSortable(this.moduleList,index,function () {
+                this.moveUpSortable(this.moduleList, index, function () {
                     _this.moveModifyIndex--;
                     _this.tplGoScroller('up');
                 });
@@ -237,23 +246,23 @@
             },
             moveDownModifyBar(index){
                 index = this.moveModifyIndex;
-                let _this=this;
+                let _this = this;
 
-                this.moveDownSortable(this.moduleList,index,function () {
+                this.moveDownSortable(this.moduleList, index, function () {
                     _this.moveModifyIndex++;
                     _this.tplGoScroller('down');
                 });
 
-/*
+                /*
 
-                if (index === this.moduleList.length - 1) {
-                    alert("已经是最后一项啦！");
-                    return false;
-                }
-                this.moduleList.splice(index + 2, 0, (this.moduleList[index]));
-                this.moduleList.splice(index, 1);
-                this.moveModifyIndex++;
-                this.tplGoScroller('down');*/
+                 if (index === this.moduleList.length - 1) {
+                 alert("已经是最后一项啦！");
+                 return false;
+                 }
+                 this.moduleList.splice(index + 2, 0, (this.moduleList[index]));
+                 this.moduleList.splice(index, 1);
+                 this.moveModifyIndex++;
+                 this.tplGoScroller('down');*/
             },
             tplGoScroller(type){
                 let $index = this.moveModifyIndex;
@@ -270,6 +279,7 @@
                 console.log(top - move_h);
                 let moveto = type === 'down' ? top + move_h : top - move_h;
                 tpl_scroller_EL.scrollTo(0, moveto, true);
+
             },
 
             sortingModifyBar(index) {
@@ -284,6 +294,7 @@
                             {id: 2, text: '下移'}],
                         cancel: '完成'
                     },
+                    filter: false,
                     onConfirm(data, cancel){
                         if (data.id === 1) {
                             console.log('上移');

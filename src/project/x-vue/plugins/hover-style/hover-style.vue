@@ -3,24 +3,26 @@
         width: 100%;
         position: relative;
     }
-    .hover-style-box.onhover .hover-style{
+
+    .hover-style-box.onhover .hover-style {
         display: block;
     }
-    .hover-style{
+
+    .hover-style {
         position: absolute;
         left: 0;
         right: 0;
         top: 0;
         width: 100%;
         height: 100%;
-        border-radius: 10px;
-        background: rgba(0,0,0,0.1);
+        background: rgba(0, 0, 0, 0.1);
         display: none;
     }
 </style>
 
 <template>
-    <div class="hover-style-box" :class="{'onhover':onHoverFlag}" v-on:touchstart="omTouchstartEvent" v-on:touchend="omTuchendEvent" @click="starClick" >
+    <div class="hover-style-box" :class="{'onhover':onHoverFlag}" v-on:touchstart="omTouchstartEvent"
+         v-on:touchend="omTuchendEvent" @click="starClick">
         <slot></slot>
         <div class="hover-style"></div>
     </div>
@@ -31,7 +33,7 @@
         name: 'history-item',
         data: function () {
             return {
-                onHoverFlag:false
+                onHoverFlag: false
             }
         },
         props: ['propData'],
@@ -40,14 +42,13 @@
         },
         methods: {
             starClick(data){
-                console.log('hover-style')
                 this.$emit('starClick', data);
             },
             omTouchstartEvent(){
-                this.onHoverFlag=true;
+                this.onHoverFlag = true;
             },
             omTuchendEvent(){
-                this.onHoverFlag=false;
+                this.onHoverFlag = false;
             },
 
         },

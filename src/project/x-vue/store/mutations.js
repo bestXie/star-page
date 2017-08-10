@@ -5,12 +5,23 @@
 export default{
     /*加载中*/
     updateLoadingStatus (state, status) {
-        state.loadingShow = status;
-        console.log(state.loadingShow)
+        let loading = {};
+        status = status || {};
+        loading.show = status.show || false;
+        loading.tips = status.tips || '';
+        loading.state = status.state || '';
+        state.loading = loading
+    },
+    updatePhotoEditorEd(state, status){
+        state.photoEditorEd = status;
+        console.log(state.photoEditorEd)
     },
     /*confirm*/
     confirm(state, status){
+        console.log(status.filter);
         (typeof (status.show) === "undefined") && (status.show = true);
+        (typeof (status.filter) === "undefined") && (status.filter = true);
+
         if (status.show) {
             if (!status.data.list) {
                 status.data.list = [{id: 1, text: '确定'}];
@@ -23,7 +34,16 @@ export default{
     },
     /*toast*/
     toast(state, status){
+        status = status || {};
         (typeof (status.show) === "undefined") && (status.show = true);
         state.toast = status;
-    }
+    },
+    /*tostError*/
+    tostError(state, status){
+        status = status || {};
+        status.show = true;
+        status.type = 'error';
+        state.toast = status;
+    },
+
 }

@@ -26,8 +26,7 @@
         mounted () {
             this.setStarList();
             this.setPageTitle('我的星主页');
-            this.position = 'top'
-
+            this.position = 'top';
         },
         computed: {},
         methods: {

@@ -2,6 +2,12 @@
  * Created by bestXie on 2017/7/11.
  */
 
+import {DD} from './base-dd-types.js'
+
+export const setTitle = (title) => {
+    DD.setTitle(title)
+};
+
 /**
  * 存储 sessionStorage
  */
@@ -28,3 +34,13 @@ export const removeStore = name => {
     if (!name) return;
     window.sessionStorage.removeItem(name);
 };
+
+/**
+ * 获取body的字体大小
+ */
+export const getBodyFontSize = () => {
+    return document.documentElement.style.fontSize.match(/(\d+(?:\.\d+)?)/)[0] || 0;
+};
+
+
+

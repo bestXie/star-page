@@ -2,7 +2,7 @@
     .wrapper {
         display: flex;
         width: 100%;
-        padding-bottom: 1.3rem;
+        padding-bottom: 1rem;
         height: 100%;
         box-sizing: border-box;
     }

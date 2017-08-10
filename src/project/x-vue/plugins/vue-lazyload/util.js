@@ -175,6 +175,29 @@ const _ = {
     }
 }
 
+
+/*
+*
+*
+*  let image = new Image();
+ image.setAttribute('crossOrigin', 'Anonymous');
+ image.src = item.src;
+ image.onload = function () {
+ var canvas = document.createElement('CANVAS'),
+ ctx = canvas.getContext('2d');
+ canvas.height = image.height;
+ canvas.width = image.width;
+ ctx.drawImage(image,0,0);
+ var dataURL = canvas.toDataURL('image/png');
+ console.log(dataURL)
+ resolve({
+ naturalHeight: image.naturalHeight,
+ naturalWidth: image.naturalWidth,
+ src: dataURL
+ })
+ }
+* */
+
 const loadImageAsync = (item, resolve, reject) => {
     let image = new Image()
     image.src = item.src

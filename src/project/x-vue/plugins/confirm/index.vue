@@ -15,7 +15,10 @@
                         <slot name="body" :confirm="confirm">
                             <hover-style class="confirm-item" v-for="item,index in confirm.data.list" :key="index"
                                          v-on:starClick="onConfirm(item)" :style="item.style">
+                                <span class="confirm-item-current" v-if="item.current"></span>
                                 <p class="confirm-item-text">{{item.text}}</p>
+                                <span class="confirm-item-current confirm-item-current-icon" v-if="item.current"></span>
+
                             </hover-style>
                         </slot>
                     </div>
@@ -146,20 +149,20 @@
         color: #fe3824;
         width: 100%;
         background: #fff;
-        border-bottom: 1px #c8c8c8 solid;
+        border-bottom: 1px #eee solid;
     }
 
-    .confirm-flex .confirm-item, .confirm-black .confirm-item {
+    .confirm-select .confirm-item,.confirm-flex .confirm-item, .confirm-black .confirm-item {
         color: #4a4a4a;
     }
 
     .confirm-flex .confirm-item {
-        border-right: 1px #c8c8c8 solid;
+        border-right: 1px #eee solid;
     }
 
     .confirm-flex .confirm-item:last-child {
         border-right: 0;
-        border-bottom: 1px #c8c8c8 solid;
+        border-bottom: 1px #eee solid;
     }
 
     .confirm-flex.modal-default-button {
@@ -203,5 +206,14 @@
     .modal-leave-active .modal-container {
         -webkit-transform: translate3d(0, 100%, 0);
         transform: translate3d(0, 100%, 0);
+    }
+
+    .confirm-item-current {
+        padding: 0 .26rem 0 .5rem;
+        height: 100%;
+    }
+    .confirm-item-current-icon{
+        background: url("../../images/common/icon_common_showing.png") right center no-repeat;
+        background-size: .26rem;
     }
 </style>

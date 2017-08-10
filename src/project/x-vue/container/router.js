@@ -31,14 +31,18 @@ const editApp_myCmpanyApp = r => require.ensure([], () => r(require('../pages/ed
 //管理企业应用-添加企业应用
 const editApp_addCmpanyApp = r => require.ensure([], () => r(require('../pages/edit/cmpanyApp/addCmpanyApp.vue')), 'pages_editApp_addCmpanyApp');
 
-//模板编辑-试用和编辑
+//模板编辑-试用和转发
+const editTpl_tryout_forward = r => require.ensure([], () => r(require('../pages/edit/tpl/tryout-forward.vue')), 'pages_editTpl_tryout_forward');
+//模板编辑-编辑
 const editTpl_trialoredit = r => require.ensure([], () => r(require('../pages/edit/tpl/trialoredit.vue')), 'pages_editTpl_trialoredit');
+
 
 // 设置  全局设置
 const editGlobal_style = r => require.ensure([], () => r(require('../pages/edit/global/style.vue')), 'pages_editGlobal_style');
 // 设置 颜色设置
 const editGlobal_color = r => require.ensure([], () => r(require('../pages/edit/global/color.vue')), 'pages_editGlobal_color');
-
+// 设置 输入
+const editGlobal_input = r => require.ensure([], () => r(require('../pages/edit/global/input.vue')), 'pages_editGlobal_input');
 
 //模块编辑 模块列表
 const editModule_aaddModule = r => require.ensure([], () => r(require('../pages/edit-module/base-addModule/index.vue')), 'pages_editModule_addModule');
@@ -70,6 +74,10 @@ const editModule_stationGuide_addormodify = r => require.ensure([], () => r(requ
 //showHow
 //还原-还原钉钉默认布局
 const restore_dd_default = r => require.ensure([], () => r(require('../pages/edit/restore/dd_default.vue')), 'pages_restore_dd_default');
+
+const editModule_photo_editor = r => require.ensure([], () => r(require('../pages/edit-module/photo-editor/photo-editor.vue')), 'pages_editModule_photo_editor');
+
+
 
 /*编辑 end*/
 
@@ -135,6 +143,11 @@ const routes = [
                 }]
             },
             {
+                path: '/editModule_photo_editor',
+                name: 'editModule_photo_editor',
+                component: editModule_photo_editor,
+            },
+            {
                 path: '/editMyTpl',
                 name: 'editMyTpl',
                 component: common_routerWarpper,
@@ -185,7 +198,13 @@ const routes = [
                         path: '/editTpl_trialoredit',
                         name: 'editTpl_trialoredit',
                         component: editTpl_trialoredit
+                    },
+                    {
+                        path: '/editTpl_tryout_forward',
+                        name: 'editTpl_tryout_forward',
+                        component: editTpl_tryout_forward
                     }]
+                //editTpl_tryout_forward
             },
             {
                 path: '/global',
@@ -201,9 +220,16 @@ const routes = [
                         path: '/editGlobal_color',
                         name: 'editGlobal_color',
                         component: editGlobal_color
+                    },
+                    {
+                        path: '/editGlobal_input',
+                        name: 'editGlobal_input',
+                        component: editGlobal_input
                     }
                 ]
             },
+
+            //
             {
                 path: '/editModule',
                 name: 'editModule',

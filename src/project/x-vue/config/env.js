@@ -18,7 +18,7 @@ let imgBaseUrl = 'http://apptestuat.fosun.org/';
 
 if (process.env.NODE_ENV == 'development') {//开发
 
-    baseUrl = 'http://10.160.192.15' + ':8086/star/';
+    baseUrl = 'http://10.160.192.16' + ':8086/star/';
 
 } else if (process.env.NODE_ENV == 'production') {//生产
 

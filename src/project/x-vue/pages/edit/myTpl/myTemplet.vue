@@ -5,6 +5,7 @@
         padding: .2rem 0;
         height: .88rem;
         background: #fff;
+        box-shadow: 0px 0px 1px rgba(0,0,0,0.3);
     }
 
     .tabList-box {
@@ -78,16 +79,20 @@
         width: 100%;
         height: 5.32rem;
         border: 1px #c8c8c8 solid;
-        box-shadow: 0px 0px 3px #000;
+        box-shadow:0px 0px 5px rgba(0,0,0,0.3);
         display: flex;
         justify-content: center;
         align-items: center;
+
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+        background-position:top center;
     }
 
     .blank-templet {
-        font-size: 1rem;
+        font-size: .72rem;
         text-align: center;
-        color: #ccc;
+        color: #f2f2f2;
     }
 
     .templet-item-title {
@@ -98,6 +103,7 @@
         text-align: center;
         height: .3rem;
         line-height: .3rem;
+
     }
 
     /**/
@@ -141,6 +147,15 @@
         margin: .5rem auto;
         width: 100%;
     }
+    .templet-item-box img{
+        width: 100%;
+    }
+    img[lazy=error]{
+        vertical-align: middle;
+        height: 100%;
+        background-size: 100% auto;
+
+    }
 
     /**/
 </style>
@@ -162,7 +177,7 @@
             <section class="templet-wrapper" v-if="tabList[0].current">
                 <div class="templet-box">
 
-                    <div class="templet-item-weapper" @click="templetItemEvent">
+                    <div class="templet-item-weapper" @click="templetItemEvent('add')">
                         <div class="templet-item-box">
                             <div class="blank-templet"><p>空白</p>
                                 <p>模板</p></div>
@@ -171,19 +186,17 @@
                     </div>
                     <div class="templet-item-weapper" v-for="item,index in tplList" :key="index"
                          @click="templetItemEvent(item)">
-                        <div class="templet-item-box"> {{item.title}}
+                        <div class="templet-item-box">
+                            <img v-lazy="item.imgSrc" alt="" >
                         </div>
-                        <div class="templet-item-title">{{item.title}}</div>
+                        <div class="templet-item-title" >{{item.title}}</div>
                     </div>
                 </div>
             </section>
 
             <section class="history-wrapper" v-if="tabList[1].current">
                 <history-box :propData="snapshotData" :bgcolor="'#fffcd3'" @starClick="snapshotItemCLick"></history-box>
-
-
                 <history-box :propData="currentData" @starClick="currentItemCLick"></history-box>
-
                 <history-box :propData="historyData" @starClick="historyItemCLick"></history-box>
             </section>
 
@@ -211,6 +224,7 @@
     import {ContentEmpty}from '../../../plugins/content-empty/';
     import {getCompanyTemplate} from '../../../api/index.js'
     import {getStore, setStore} from '../../../util/index';
+    import {go} from '../../../util/router.js'
     export default {
         components: {
             Swipeout,
@@ -223,14 +237,14 @@
         data () {
             return {
                 tabList: [
-                    {name: '模板', id: '1', current: true},
-                    {name: '最近', id: '2'}
+                    {name: '系统模板', id: '1'},
+                    {name: '我的模板', id: '2'}
                 ],
                 tplList: [
-                    {title: '111', imgSrc: '', id: ''},
-                    {title: '111', imgSrc: '', id: ''},
-                    {title: '111', imgSrc: '', id: ''},
-                    {title: '111', imgSrc: '', id: ''}
+                    {title: '111', imgSrc: 'http://apptest.fosun.com/m/x-vue/img/icon_myTemplate_Template2.png', id: ''},
+                    {title: '222', imgSrc: 'http://apptest.fosun.com/m/x-vue/img/icon_myTemplate_historyTemplate.png', id: ''},
+                    {title: '333', imgSrc: 'http://apptest.fosun.com/m/x-vue/img/icon_myTemplate_Template.png', id: ''},
+                    {title: '444', imgSrc: 'http://apptest.fosun.com/m/x-vue/img/icon_myTemplate_historyTemplate.png', id: ''}
                 ],
                 historyData: {},
                 currentData: {},
@@ -238,7 +252,6 @@
             }
         },
         mounted () {
-            this.setPageTitle('我的模板');
             this.init();
         },
         methods: {
@@ -247,7 +260,7 @@
                 this.getStoreMyTempletTabListId();
             },
             getStoreMyTempletTabListId(){
-                let tabList_id = getStore('myTemplet_tabList_id')||'1';
+                let tabList_id = getStore('myTemplet_tabList_id') || '1';
                 this.tabList = this.tabList.filter(function (item) {
                     item.current = (item.id === tabList_id);
                     return item;
@@ -255,20 +268,160 @@
                 console.log(tabList_id)
             },
             async pageinit(){
+                this.$store.commit('updateLoadingStatus', {show: true, tips: '图片加载中 请稍后'});
                 let res = await getCasCheck({email: 'ceshi@.ddd2.com'}).then(res => {
                     console.log(res, 111)
+
                 });
                 console.log(res, 3)
             },
             async getCompanyTemplate(){
-                let _this=this;
+                let _this = this;
+                this.$store.commit('updateLoadingStatus', {show: true, tips: '数据加载中 请稍后'});
                 let res = await getCompanyTemplate({companyId: 101}).catch(res => {
-                    _this.$store.commit('toast', {content: '数据请求异常'});
+                    _this.$store.commit('tostError', {content: '数据获取失败!'});
                     console.log('getCompanyTemplate报错了');
                     console.log(res);
                 });
+                this.$store.commit('updateLoadingStatus');
                 if (res) {
                     this.setCompanyTemplateDta(res.data.data);
+                } else {
+                    let data = {
+                        "data": {
+                            "historyData": [
+                                {
+                                "companyId": 101,
+                                "templateId": 101,
+                                "templateName": "测试模板",
+                                "templateTitle": "测试模1",
+                                "current": 0,
+                                "templateOrder": 2,
+                                "templateStyleId": 101,
+                                "templateStyle": 0,
+                                "version": "100",
+                                "history": 1,
+                                "creationTime": "2017.7.7 14:03",
+                                "imgSrc": '',
+                                "star": 1
+                            }, {
+                                "companyId": 101,
+                                "templateId": 110,
+                                "templateName": "测试模板",
+                                "templateTitle": "测试模10",
+                                "current": 0,
+                                "templateOrder": 2,
+                                "templateStyleId": 101,
+                                "templateStyle": 0,
+                                "version": "100",
+                                "history": 1,
+                                "creationTime": "2017.7.7 14:03",
+                                "imgSrc": 'http://apptest.fosun.com/m/x-vue/img/icon_myTemplate_Template.png',
+                                "star": null
+                            }, {
+                                "companyId": 101,
+                                "templateId": 112,
+                                "templateName": "测试模板",
+                                "templateTitle": "测试模11",
+                                "current": 0,
+                                "templateOrder": 2,
+                                "templateStyleId": 101,
+                                "templateStyle": 0,
+                                "version": "100",
+                                "history": 1,
+                                "creationTime": "2017.7.7 14:03",
+                                "imgSrc": 'http://apptest.fosun.com/m/x-vue/img/icon_myTemplate_Template.png',
+                                "star": null
+                            }, {
+                                "companyId": 101,
+                                "templateId": 113,
+                                "templateName": "测试模板",
+                                "templateTitle": "测试模12",
+                                "current": 0,
+                                "templateOrder": 2,
+                                "templateStyleId": 101,
+                                "templateStyle": 0,
+                                "version": "100",
+                                "history": 1,
+                                "creationTime": "2017.7.7 14:03",
+                                "imgSrc": 'http://apptest.fosun.com/m/x-vue/img/icon_myTemplate_Template.png',
+                                "star": null
+                            }, {
+                                "companyId": 101,
+                                "templateId": 114,
+                                "templateName": "测试模板",
+                                "templateTitle": "测试模13",
+                                "current": 0,
+                                "templateOrder": 2,
+                                "templateStyleId": 101,
+                                "templateStyle": 0,
+                                "version": "100",
+                                "history": 1,
+                                "creationTime": "2017.7.7 14:03",
+                                "imgSrc": 'http://apptest.fosun.com/m/x-vue/img/icon_myTemplate_Template.png',
+                                "star": null
+                            }],
+                            "currentData": [{
+                                "companyId": 101,
+                                "templateId": 102,
+                                "templateName": "测试模板",
+                                "templateTitle": "测试模2",
+                                "current": 1,
+                                "templateOrder": 1,
+                                "templateStyleId": 101,
+                                "templateStyle": 1,
+                                "version": "100",
+                                "history": null,
+                                "creationTime": "2017.7.7 14:03",
+                                "imgSrc": 'http://apptest.fosun.com/m/x-vue/img/icon_myTemplate_Template.png',
+                                "star": 1
+                            }],
+                            "snapshotData": [{
+                                "companyId": 101,
+                                "templateId": 103,
+                                "templateName": "测试模板",
+                                "templateTitle": "昂贵的黄金三",
+                                "current": 0,
+                                "templateOrder": 2,
+                                "templateStyleId": 101,
+                                "templateStyle": 0,
+                                "version": "100",
+                                "history": null,
+                                "creationTime": "2017.7.7 14:03",
+                                "imgSrc": 'http://apptest.fosun.com/m/x-vue/img/icon_myTemplate_Template2.png',
+                                "star": 1
+                            }, {
+                                "companyId": 101,
+                                "templateId": 104,
+                                "templateName": "测试模板",
+                                "templateTitle": "测试模4",
+                                "current": 0,
+                                "templateOrder": 2,
+                                "templateStyleId": 101,
+                                "templateStyle": 0,
+                                "version": "100",
+                                "history": null,
+                                "creationTime": "2017.7.7 14:03",
+                                "imgSrc": 'http://apptest.fosun.com/m/x-vue/img/icon_myTemplate_Template.png',
+                                "star": null
+                            }, {
+                                "companyId": 101,
+                                "templateId": 105,
+                                "templateName": "测试模板",
+                                "templateTitle": "测试模5",
+                                "current": 0,
+                                "templateOrder": 2,
+                                "templateStyleId": 101,
+                                "templateStyle": 0,
+                                "version": "100",
+                                "history": null,
+                                "creationTime": "2017.7.7 14:03",
+                                "imgSrc": 'http://apptest.fosun.com/m/x-vue/img/icon_myTemplate_Template.png',
+                                "star": null
+                            }]
+                        }
+                    };
+                    this.setCompanyTemplateDta(data.data);
                 }
             },
             setCompanyTemplateDta(data){
@@ -311,68 +464,101 @@
             tabTtemEvent(index){
                 this.tabList = this.tabList.filter(function (item, idx) {
                     item.current = (idx === index);
-                    if(idx === index){
-                        setStore('myTemplet_tabList_id',item.id)
+                    if (idx === index) {
+                        setStore('myTemplet_tabList_id', item.id)
                     }
                     return item;
                 });
             },
-            setPageTitle(data){
-                dd.ready(function () {
-                    dd.ui.webViewBounce.disable();
-                    dd.ui.pullToRefresh.disable();
-                    dd.biz.navigation.setTitle({
-                        title: '我的星主页',//控制标题文本，空字符串表示显示默认文本
-                        onSuccess: function (result) {
-
-                        },
-                        onFail: function (err) {
-                            alert(err)
-                        }
-                    });
-
-                    dd.biz.navigation.setRight({
-                        show: false,
-                    });
-
-                });
-                dd.error(function (error) {
-                    alert('dd error: ' + JSON.stringify(err));
-                });
-            },
             templetItemEvent(data){
-                if (data) {
-                    console.log(data)
+                if (data&&data==='add') {
+                    this.$router.push('edittpl_trialoredit');
+                    return false;
                 }
-                this.$router.push('edittpl_trialoredit')
+                this.$router.push('edittpl_tryout_forward');
+
+            },
+            tplItemCLickOnmore(item, type, data){
+                console.log('tplItemCLickOnmore', item, type, data);
+                this.$router.push('edittpl_tryout_forward');
+            },
+            tplItemCLickOndelete(item, type, data){
+                console.log('tplItemCLickOndelete', item, type, data);
+                let _this = this;
+                this.$store.commit('confirm', {
+                    data: {
+                        title: '确定删除“' + item.templateName + 'banner广告”吗？',
+                        list: [{id: 1, text: '确定删除'}]
+                    },
+                    onConfirm(data, cancel){
+                        if (data.id === 1) {
+                            _this.deleteTplItemById()
+                        }
+                        cancel();
+                    },
+                    onCancel(cancel) {
+                        cancel();
+                    }
+                });
+
+            },
+            async deleteTplItemById(id){
+                let _this = this;
+                this.$store.commit('updateLoadingStatus', {show: true, tips: '模板删除中 请稍后'});
+                let res = await getCompanyTemplate({companyId: 101}).catch(res => {
+                    _this.$store.commit('tostError', {content: '模板删除失败!（001）'});
+                    console.log('getCompanyTemplate报错了');
+                    console.log(res);
+                });
+                this.$store.commit('updateLoadingStatus');
+            },
+            tplItemCLickOndefault(item, type, data){
+//                console.log('tplItemCLickOndefault', item, type, data);
+                dd.device.notification.prompt({
+                    title: "请输入模板名称",
+                    buttonLabels: ['确认', '取消'],
+                    onSuccess : function(result) {
+                        //onSuccess将在点击button之后回调
+                        /*
+                         {
+                         buttonIndex: 0, //被点击按钮的索引值，Number类型，从0开始
+                         value: '' //输入的值
+                         }
+                         */
+                        alert(JSON.stringify(result))
+                    },
+                    onFail : function(err) {}
+                });
             },
             tplItemCLick(type, data){
-                console.log(data);
-                console.log(type);
-                if (data.type && data.type === 'more') {
-                    this.$router.push(data.data);
+                if (!data.type) {
+                    this.$store.commit('tostError', {content: '001数据读取失败'});
+                    return false;
                 }
-                if (data.type && data.type === 'delete') {
-//                    this.$router.push(data.data)
+                if(data.type==='link'){
+                    go(data.data, this.$router);
+                    return false;
                 }
-                if (data.type && data.type === 'default') {
-//                    this.$router.push(data.data)
+                let item = this[type + 'Data'] && this[type + 'Data'].list && this[type + 'Data'].list[data.data] || '';
+                if (!item) {
+                    this.$store.commit('tostError', {content: '002数据读取失败'});
+                    return false;
                 }
-                if (data.type && data.type === 'primary') {
-//                    this.$router.push(data.data)
-                }
-                data.callback && data.callback()
+                this['tplItemCLickOn' + data.type] && this['tplItemCLickOn' + data.type](item, type, data);
+//                more delete  default primary
+//                data.callback && data.callback();
             },
             historyItemCLick(data){
-                this.tplItemCLick('history', data)
+                this.tplItemCLick('history', data);
             },
             snapshotItemCLick(data){
-                this.tplItemCLick('snapshot', data)
+                this.tplItemCLick('snapshot', data);
             },
             currentItemCLick(data){
-                this.tplItemCLick('currentI', data)
+                this.tplItemCLick('current', data);
             }
         }
     }
 </script>
+
 

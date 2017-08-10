@@ -102,6 +102,8 @@
                 'editApp_myCmpanyApp',
                 'editApp_addCmpanyApp',
                 'editTpl_trialoredit',
+                'editTpl_tryout_forward',
+
                 'editModule_aaddModule',
                 'editModule_showHow',
                 'editGlobal_style',
@@ -125,7 +127,8 @@
                 'editModule_stationGuide',
                 'editModule_stationGuide_edit',
                 'editModule_stationGuide_style',
-                'editModule_stationGuide_addormodify'
+                'editModule_stationGuide_addormodify',
+                'editmodule_photo_editor'
             ];
 
 

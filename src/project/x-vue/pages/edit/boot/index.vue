@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper">
         <confirm :confirm="confirm"></confirm>
-        <toast :propData="toast"></toast>
+        <toast :propData="toast" :zindex="111"></toast>
         <router-view style="flex:1;" :class="{'x-filter':confirm.show&&confirm.filter}"></router-view>
     </div>
 </template>
@@ -28,6 +28,7 @@
 </script>
 
 <style lang="less">
+
     //公用修改的宽高默认
     .edit-container {
         width: 100%;
@@ -61,6 +62,7 @@
     }
 
     /*公用标题 start*/
+
     //公用标题盒模型
     .x-title-box {
         box-sizing: border-box;
@@ -90,6 +92,7 @@
     }
 
     /*公用标题 enf*/
+
     //星任务 右箭头ICOn
     .x-r-icon {
         width: .16rem;
@@ -151,7 +154,7 @@
     }
 
     .bar-container-wrapper .x-border-1px-bottom:last-child {
-        border-bottom: 0;
+        /*border-bottom: 0;*/
     }
 
     .edit-item-wrapper .x-swipeout-item:last-child .x-border-1px-bottom {
@@ -174,6 +177,12 @@
 
     .bar-container-item-box .bar-container-item-l {
         width: 2.1rem;
+        display: flex;
+        -ms-flex-align: center;
+        align-items: center;
+        justify-content: center;
+
+
     }
 
     .bar-container-item-box .bar-container-item-r {
@@ -206,6 +215,7 @@
         padding-right: .3rem;
         display: flex;
         flex-direction: column;
+        justify-content: center;
     }
 
     .bar-container-img .bar-container-item-r {
@@ -223,8 +233,8 @@
         border-radius: 6px;
     }
 
+
     .bar-container-img .bar-container-img-title {
-        padding-top: .5rem;
         font-size: .34rem;
         color: #030303;
         width: 100%;
@@ -273,9 +283,9 @@
         -webkit-transition: background-color 0.1s, border 0.1s;
         -moz-transition: background-color 0.1s, border 0.1s;
         transition: background-color 0.1s, border 0.1s;
-        appearance:none;
-        -moz-appearance:none; /* Firefox */
-        -webkit-appearance:none; /* Safari 和 Chrome */
+        appearance: none;
+        -moz-appearance: none; /* Firefox */
+        -webkit-appearance: none; /* Safari 和 Chrome */
     }
 
     .x-switch-item-r {
@@ -338,6 +348,72 @@
         padding-left: .3rem;
         box-sizing: border-box;
     }
-
     /*... bar end*/
+
+
+    /*.x-icon start  */
+    .x-icon-back {
+        background: url("../../../images/common/icon_common_arrowRight_gray.png") center no-repeat;
+        background-size: 100% 100%;
+    }
+
+    .x-icon-yes {
+        background: url("../../../images/common/icon_common_showing.png") center no-repeat;
+        background-size: 100% 100%;
+    }
+
+    /*.x-icon end  */
+
+   /* !*img lazy start*!
+    img[ lazy = loading ] {
+        background: #eee url("../../../images/svg/loading-spin.svg") center no-repeat;
+        background-size: auto 33%;
+    }
+
+    img[ lazy = error ] {
+        background: #eee url("../../../images/common/404.png") center no-repeat;
+        background-size: 100%;
+    }
+
+    img[ lazy = loaded ] {
+    }
+
+    !*img lazy end*!*/
+
+    /*common style start*/
+
+    .wrapper {
+        width: 100%;
+        height: 100%;
+    }
+
+    //star-flex
+    .star-flex {
+        display: -webkit-flex;
+        display: flex;
+    }
+
+    //页面背景定义
+    .app-wrapper {
+        width: 100%;
+        height: 100%;
+        max-width: 750px;
+        margin: 0 auto;
+    }
+
+    //定义内容高度
+    .app-container {
+        width: 100%;
+        height: 100%;
+    }
+
+    /*common style end*/
+
+    /*color start*/
+    //页面背景定义
+    .app-wrapper {
+        background-color: #f8f8f8;
+    }
+
+    /*color end*/
 </style>

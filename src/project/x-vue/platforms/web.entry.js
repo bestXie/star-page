@@ -24,11 +24,13 @@ import VueLazyload from '../plugins/vue-lazyload/index.js';
 Vue.use(VueScroller);
 
 import loadingImgSrc from '../images/svg/loading-spin.svg'
-import loadingError from '../images/common/404.png'
+import loadingError from '../images/common/transparent.png'
+/* error: loadingError,
+ loading: loadingImgSrc,*/
 Vue.use(VueLazyload, {
     preLoad: 1.3,
-    error: loadingError,
-    loading: loadingImgSrc,
+    loading: '',
+    error: '',
     try: 2
 });
 
@@ -39,7 +41,7 @@ if ('addEventListener' in document) {
 }
 
 router.beforeEach(function (to, from, next) {
-    store.commit('updateLoadingStatus', true);
+    store.commit('updateLoadingStatus', {show: true});
     store.commit('confirm', {
         show: false
     });
@@ -47,7 +49,8 @@ router.beforeEach(function (to, from, next) {
 });
 
 router.afterEach(function (to) {
-    store.commit('updateLoadingStatus', false);
+    store.commit('updateLoadingStatus', {show: false});
+
 });
 
 new Vue(Vue.util.extend({
@@ -55,3 +58,5 @@ new Vue(Vue.util.extend({
     router,
     store
 }, App));
+
+

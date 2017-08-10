@@ -41,9 +41,9 @@
     }
 
     .templet-tips-bg {
-        margin:.5rem auto;
+        margin: .5rem auto;
         width: 3rem;
-        height:3rem;
+        height: 3rem;
         background: #ccc;
     }
 
@@ -52,26 +52,26 @@
 
 <template>
     <div class="wrapper">
+        <scroller>
+            <section class="history-wrapper" style="display: block">
+                <history-box :propData="historyData" @starClick="historyItemCLick"></history-box>
+            </section>
 
-        <section class="history-wrapper" style="display: block">
-            <history-box :propData="historyData" @starClick="historyItemCLick"></history-box>
-        </section>
+            <section class="templet-tips-wrapper" style="display: none">
+                <div class="templet-tips-top">
+                    <div class="templet-tips-text">
+                        <p>你还未使用过任何模板，</p>
+                        <p>请到“<span class="x-tips-color">模板</span>”选择您喜欢的模板！</p>
+                    </div>
+                    <div class="templet-tips-bg">
 
-        <section class="templet-tips-wrapper" style="display: none">
-            <div class="templet-tips-top">
-                <div class="templet-tips-text">
-                    <p>你还未使用过任何模板，</p>
-                    <p>请到“<span class="x-tips-color">模板</span>”选择您喜欢的模板！</p>
+                    </div>
                 </div>
-                <div class="templet-tips-bg">
-
+                <div class="templet-tips-bottom">
+                    <p>若有任何疑问，可<span class="x-tips-color">联系我们</span></p>
                 </div>
-            </div>
-            <div class="templet-tips-bottom">
-                <p>若有任何疑问，可<span class="x-tips-color">联系我们</span></p>
-            </div>
-        </section>
-
+            </section>
+        </scroller>
     </div>
 </template>
 
@@ -100,15 +100,147 @@
                         more: false
                     },
                     list: [
-                        {title: '测试模板01', tips: '2017.7.7 14:03创建', star: '1',bgcolor:'#fffcd3'},
-                        {title: '测试模板01', tips: '2017.7.7 14:03创建', star: '1'},
-                        {title: '测试模板01', tips: '2017.7.7 14:03创建', star: '1'},
-                        {title: '测试模板01', tips: '2017.7.7 14:03创建', star: '1'},
-                        {title: '测试模板01', tips: '2017.7.7 14:03创建'},
-                        {title: '测试模板01', tips: '2017.7.7 14:03创建'},
-                        {title: '测试模板01', tips: '2017.7.7 14:03创建'},
-                        {title: '测试模板01', tips: '2017.7.7 14:03创建'},
-                        {title: '测试模板01', tips: '2017.7.7 14:03创建'},
+                        {
+                            "companyId": 101,
+                            "templateId": 101,
+                            "templateName": "测试模板",
+                            "templateTitle": "测试模1",
+                            "current": 0,
+                            "templateOrder": 2,
+                            "templateStyleId": 101,
+                            "templateStyle": 0,
+                            "version": "100",
+                            "history": 1,
+                            "creationTime": "2017.7.7 14:03",
+                            "imgSrc": 'ssss',
+                            "star": 1
+                        }, {
+                            "companyId": 101,
+                            "templateId": 110,
+                            "templateName": "测试模板",
+                            "templateTitle": "测试模10",
+                            "current": 0,
+                            "templateOrder": 2,
+                            "templateStyleId": 101,
+                            "templateStyle": 0,
+                            "version": "100",
+                            "history": 1,
+                            "creationTime": "2017.7.7 14:03",
+                            "imgSrc": '',
+                            "star": null
+                        }, {
+                            "companyId": 101,
+                            "templateId": 112,
+                            "templateName": "测试模板",
+                            "templateTitle": "测试模11",
+                            "current": 0,
+                            "templateOrder": 2,
+                            "templateStyleId": 101,
+                            "templateStyle": 0,
+                            "version": "100",
+                            "history": 1,
+                            "creationTime": "2017.7.7 14:03",
+                            "imgSrc": '',
+                            "star": null
+                        }, {
+                            "companyId": 101,
+                            "templateId": 113,
+                            "templateName": "测试模板",
+                            "templateTitle": "测试模12",
+                            "current": 0,
+                            "templateOrder": 2,
+                            "templateStyleId": 101,
+                            "templateStyle": 0,
+                            "version": "100",
+                            "history": 1,
+                            "creationTime": "2017.7.7 14:03",
+                            "imgSrc": '',
+                            "star": null
+                        }, {
+                            "companyId": 101,
+                            "templateId": 114,
+                            "templateName": "测试模板",
+                            "templateTitle": "测试模13",
+                            "current": 0,
+                            "templateOrder": 2,
+                            "templateStyleId": 101,
+                            "templateStyle": 0,
+                            "version": "100",
+                            "history": 1,
+                            "creationTime": "2017.7.7 14:03",
+                            "imgSrc": '',
+                            "star": null
+                        }, {
+                            "companyId": 101,
+                            "templateId": 114,
+                            "templateName": "测试模板",
+                            "templateTitle": "测试模13",
+                            "current": 0,
+                            "templateOrder": 2,
+                            "templateStyleId": 101,
+                            "templateStyle": 0,
+                            "version": "100",
+                            "history": 1,
+                            "creationTime": "2017.7.7 14:03",
+                            "imgSrc": '',
+                            "star": null
+                        }, {
+                            "companyId": 101,
+                            "templateId": 114,
+                            "templateName": "测试模板",
+                            "templateTitle": "测试模13",
+                            "current": 0,
+                            "templateOrder": 2,
+                            "templateStyleId": 101,
+                            "templateStyle": 0,
+                            "version": "100",
+                            "history": 1,
+                            "creationTime": "2017.7.7 14:03",
+                            "imgSrc": '',
+                            "star": null
+                        }, {
+                            "companyId": 101,
+                            "templateId": 114,
+                            "templateName": "测试模板",
+                            "templateTitle": "测试模13",
+                            "current": 0,
+                            "templateOrder": 2,
+                            "templateStyleId": 101,
+                            "templateStyle": 0,
+                            "version": "100",
+                            "history": 1,
+                            "creationTime": "2017.7.7 14:03",
+                            "imgSrc": '',
+                            "star": null
+                        }, {
+                            "companyId": 101,
+                            "templateId": 114,
+                            "templateName": "测试模板",
+                            "templateTitle": "测试模13",
+                            "current": 0,
+                            "templateOrder": 2,
+                            "templateStyleId": 101,
+                            "templateStyle": 0,
+                            "version": "100",
+                            "history": 1,
+                            "creationTime": "2017.7.7 14:03",
+                            "imgSrc": '',
+                            "star": null
+                        }, {
+                            "companyId": 101,
+                            "templateId": 114,
+                            "templateName": "测试模板",
+                            "templateTitle": "测试模13",
+                            "current": 0,
+                            "templateOrder": 2,
+                            "templateStyleId": 101,
+                            "templateStyle": 0,
+                            "version": "100",
+                            "history": 1,
+                            "creationTime": "2017.7.7 14:03",
+                            "imgSrc": '',
+                            "star": null
+                        }
                     ]
                 }
             }

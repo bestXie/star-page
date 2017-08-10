@@ -1,6 +1,8 @@
 export default{
     count: 0,
-    loadingShow: false,
+    loading:{
+        show:false
+    },
     direction: 'forward',
     confirm: {
         show: false,
@@ -9,6 +11,7 @@ export default{
             list:'',
             cancel: '取消'
         },
+        filter: true,
         maskClick:true,
         onConfirm: false,
         onCancel: false,
@@ -16,5 +19,6 @@ export default{
     },
     toast:{
         show:false
-    }
+    },
+    photoEditorEd:false
 }
